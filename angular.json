@@ -5,10 +5,14 @@
   "projects": {
     "landingpage2": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -24,9 +28,21 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/sass/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free-webfonts/css/fontawesome.css",
+              "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-regular.css",
+              "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-brands.css",
+              "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css"
             ],
-            "scripts": []
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src"
+              ]
+            },
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -89,7 +105,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/sass/styles.scss"
             ],
             "scripts": []
           }
@@ -120,6 +136,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "landingpage2"
+    }
+  },
+  "defaultProject": "landingpage2",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

@@ -1,0 +1,70 @@
+@import "sass/variables";
+.fa-twitter:hover{
+  color: #00aced;
+}
+.fa-instagram:hover{
+  background: radial-gradient(circle at 33% 100%, #fed373  4%, #f15245  30%, #d92e7f  62%, #9b36b7  85%, #515ecf );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.fa-github:hover{
+  color: #000000;
+}
+.fa-wordpress:hover{
+  color: $color-wordPress;
+}
+.fa-at:hover{
+  color: #0489c9;
+}
+.fa-snapchat-ghost:hover{
+  color: #fffc00;
+}
+.fa-gitlab:hover{
+  color: $color-gitlab;
+}
+.fa-discord:hover{
+  color: #7289DA;
+}
+.fa-pinterest:hover{
+  color: #cb2027;
+}
+
+.fa-paypal:hover{
+  color: #003087;
+}
+.fa-reddit:hover{
+  color: #ff4500;
+}
+.fa-facebook:hover{
+  color: #3b5998;
+}
+.fa-spotify:hover{
+  color: #00e461;
+}
+.fa-steam:hover{
+  color: #000000;
+}
+.fa-telegram-plane:hover{
+  color: #0088cc;
+}
+.fa-twitch:hover{
+  color: #6441a5;
+}
+.fa-trello:hover{
+  color: #0079bf;
+}
+.fa-git-square:hover{
+  color: #f1502f;
+}
+.fa-git-square:hover{
+  color: #f1502f;
+}
+.fa-book:hover{
+  color: $color-bookStack;
+}
+.fa-cloud:hover{
+  color: $color-nexCloud;
+}
+.fa-xing:hover{
+  color: #026466;
+}

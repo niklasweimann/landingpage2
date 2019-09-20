@@ -1,0 +1,140 @@
+@import "sass/styles";
+body{
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size:16px;
+  letter-spacing:.3px;
+  background-color:#0e141f;
+  color:#FFF;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  /*Animation*/
+  animation:fadein 3.0s;
+  -moz-animation:fadein 3.0s;
+  -webkit-animation:fadein 3.0s;
+}
+
+.sidebar{
+  height: 100%;
+  width: 30%;
+  float: right;
+  position: relative;
+  z-index: 100;
+  background-color: rgb(16,16,16, 0.75);
+  .sidebar-content{
+    width: 100%;
+    padding: 2em;
+  }
+}
+
+.content {
+  margin: auto;
+  width: 50%;
+  height: 25%;
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  .image {
+    display: inline-block;
+    z-index: 2;
+    .portrait{
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border-width: 3px;
+      border-color: #FFF;
+      border-style: solid;
+      background-image: url("../assets/me.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+  .text {
+    .linkList {
+      left: 4em;
+      text-align: left;
+    }
+
+    h1 a {
+      text-decoration: none !important;
+      letter-spacing: 1px;
+      color: white;
+      z-index: 2;
+    }
+
+    p {
+      color: #b3b3b3;
+      z-index: 3;
+
+      a {
+        text-decoration: none !important;
+        font-weight: bold;
+        color: white;
+      }
+
+      a:hover {
+        color: #faa500;
+      }
+    }
+
+    ul {
+      z-index: 4;
+      padding: 0;
+      margin-top: 0.5em;
+    }
+
+    ul .linkHeadline {
+      font-size: 1.2em;
+      font-weight: normal;
+      vertical-align: super;
+      color: #b3b3b3;
+      margin-right: 1em;
+    }
+
+    ul li {
+      display: inline;
+      font-size: 2em;
+    }
+
+    ul li a {
+      color: white;
+      padding-left: 0.5%;
+      padding-right: 0.5%;
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+/* animations */
+@keyframes fadein{
+  from{
+    opacity:0;
+  }to{
+     opacity:1;
+   }
+}
+@-moz-keyframes fadein{
+  from{
+    opacity:0;
+  }to{
+     opacity:1;
+   }
+}
+@-webkit-keyframes fadein{
+  from{
+    opacity:0;
+  }to{
+     opacity:1;
+   }
+}
+@-o-keyframes fadein{
+  from{
+    opacity:0;
+  }to{
+     opacity:1;
+   }
+}
