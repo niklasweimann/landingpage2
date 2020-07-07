@@ -7,12 +7,12 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "sass"
         }
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -22,27 +22,16 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
               "src/sass/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/@fortawesome/fontawesome-free-webfonts/css/fontawesome.css",
-              "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-regular.css",
-              "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-brands.css",
-              "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src"
-              ]
-            },
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -57,7 +46,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -105,7 +93,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/sass/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -136,12 +124,6 @@
           }
         }
       }
-    }
-  },
-  "defaultProject": "landingpage2",
-  "schematics": {
-    "@schematics/angular:component": {
-      "styleext": "scss"
-    }
-  }
+    }},
+  "defaultProject": "landingpage2"
 }
