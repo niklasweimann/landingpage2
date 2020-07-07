@@ -138,3 +138,18 @@ body{
      opacity:1;
    }
 }
+#fullscreen{
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  font-size: 10em;
+  color: white;
+}
+
+#fullPage section { height: 100vh; }
+#fullPage section:nth-child(1) { background-color: rgb(86, 188, 138); }
+#fullPage section:nth-child(2) { background-color: rgb(167, 125, 194); }
+#fullPage section:nth-child(3) { background-color: rgb(54, 70, 93); }
+#fullPage section:nth-child(4) { background-color: rgb(242, 153, 46); }
+#fullPage section:nth-child(5) { background-color: rgb(62, 43, 77); }
+#fullPage section:nth-child(6) { background-color: rgb(82, 150, 184); }
