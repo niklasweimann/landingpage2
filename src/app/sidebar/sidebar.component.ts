@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {faBars} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  sidebarShow = false;
-  constructor() { }
+  public sidebarShow = false;
+  public fabar = faBars;
 
-  public ngOnInit():void {
+  constructor() {
+  }
+
+  public ngOnInit(): void {
   }
 
 }

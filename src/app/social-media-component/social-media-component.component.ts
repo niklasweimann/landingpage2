@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {faTwitter} from '@fortawesome/free-brands-svg-icons';
+import {faGithub, faInstagram, faTwitter, faXing} from '@fortawesome/free-brands-svg-icons';
+import {faAt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-social-media-component',
@@ -8,7 +9,11 @@ import {faTwitter} from '@fortawesome/free-brands-svg-icons';
 })
 export class SocialMediaComponentComponent implements OnInit {
 
-  twitterIcon = faTwitter;
+  public twitterIcon = faTwitter;
+  public instagramIcon = faInstagram;
+  public githubIcon = faGithub;
+  public xingIcon = faXing;
+  public atIcon = faAt;
   constructor() {}
 
 

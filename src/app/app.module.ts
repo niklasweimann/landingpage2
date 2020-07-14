@@ -5,13 +5,17 @@ import { HostedServicesComponentComponent } from './sidebar/hosted-services-comp
 import { SocialMediaComponentComponent } from './social-media-component/social-media-component.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MainComponentComponent } from './main-component/main-component.component';
+import {TypewriterDirective} from './typewriter.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HostedServicesComponentComponent,
     SocialMediaComponentComponent,
-    SidebarComponent
+    SidebarComponent,
+    MainComponentComponent,
+    TypewriterDirective
   ],
   imports: [
     BrowserModule,

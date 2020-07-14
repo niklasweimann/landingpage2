@@ -1,2 +1,8 @@
 @import "../../sass/styles";
 @import "../../sass/font-awesome/font-awesome-icon-hover";
+.sidebar{
+  z-index: 10000;
+  display: flex;
+  position: absolute;
+  overflow: scroll;
+}
