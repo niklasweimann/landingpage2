@@ -1,0 +1,102 @@
+@import "../../../../sass/styles";
+@import "../../../../sass/font-awesome/font-awesome-icon-hover";
+
+h1 {
+  font-family: Arial, serif;
+  margin-bottom: 0;
+}
+
+li:hover{
+  background-color: #dddddd;
+  transform: translate(0, 1px);
+  &.gitlab>a {
+    color: $color-gitlab;
+  }
+  &.bookStack>a {
+    color: $color-bookStack;
+  }
+  &.nexCloud>a {
+    color: $color-nexCloud;
+  }
+  &.wordPress>a {
+    color: $color-wordPress;
+  }
+}
+
+.multi-button {
+  display: inline-block;
+  position: relative;
+  box-shadow: 6px 6px 2px 1px rgba(0, 0, 255, .2);
+}
+
+$default-color: #222222;
+li {
+  font-family: Lato, sans-serif;
+  outline: none;
+  display: inline-block;
+  place-items: center;
+  font-weight: bold;
+  background-color: #eeeeee;
+  border: none;
+  color: $default-color;
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 0;
+  transition: background-color .4s;
+}
+
+li:hover {
+
+}
+
+button:active {
+  background-color: #cccccc;
+  transform: translate(0, 2px);
+}
+
+li:visited {
+  color: white;
+}
+
+a:visited {
+  color: $default-color;
+}
+
+li + li {
+  margin-left: 0;
+}
+
+li:first-child {
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 4px;
+}
+
+li:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-right-width: 1px;
+}
+
+.outer-left {
+  border-radius: 6px 0 0 6px;
+}
+
+.outer-right {
+  border-radius: 0 6px 6px 0;
+}
+
+fa-icon {
+  margin-right: 5px;
+}
+
+ul {
+  list-style: none;
+  padding-inline-start: unset;
+}
+
+hr {
+  height: 2px;
+  border-width: 0;
+  color: gray;
+  background-color: gray
+}

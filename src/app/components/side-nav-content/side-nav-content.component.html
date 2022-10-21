@@ -1,0 +1,6 @@
+<div class="side-nav-bar-content">
+    <ul class="side-nav-bar-menu">
+        <li *ngFor="let navItem of navItems" (click)="onNavigationSelection(navItem)"><a>{{ navItem.label }}</a></li>
+    </ul>
+  <hosted-services-component></hosted-services-component>
+</div>
