@@ -3,8 +3,8 @@
 
   .side-nav-bar-menu {
     list-style: none;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
   }
 
   li {
@@ -16,6 +16,11 @@
       color: #000;
       font-family: Arial, ui-monospace;
       text-decoration: none;
+      user-select: none;
+    }
+
+    a.active {
+      font-weight: bolder;
     }
   }
 }

@@ -4,8 +4,9 @@ import {MainComponent} from "./pages/main/main.component";
 import {GalleryComponent} from "./pages/gallery/gallery/gallery.component";
 
 const routes: Routes = [
-  { path: '', component: MainComponent },
-  { path: 'gallery', component: GalleryComponent}
+  { path: '', component: MainComponent, title: 'Niklas Weimann' },
+  { path: 'gallery', component: GalleryComponent, title: 'Gallery - Niklas Weimann'},
+  { path: '**', component: MainComponent, title: 'Niklas Weimann'}, // fallback route
 ];
 
 @NgModule({
