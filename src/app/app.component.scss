@@ -65,7 +65,12 @@ body {
   }
 
   &:first-child {
-    background-image: url(../assets/bg1.jpg);
+    @media (max-width: 1000px) {
+      background-image: url(../assets/bg1_small.jpg);
+    }
+    @media (min-width: 1000px) {
+      background-image: url(../assets/bg1.jpg);
+    }
     transform: translateY(math.div(-$parallax-offset, 2));
 
     .content-wrapper {
@@ -74,7 +79,12 @@ body {
   }
 
   &:nth-child(2) {
-    background-image: url(../assets/bg2.jpg);
+    @media (max-width: 1000px) {
+      background-image: url(../assets/bg2_small.jpg);
+    }
+    @media (min-width: 1000px) {
+      background-image: url(../assets/bg2.jpg);
+    }
   }
 
   &:last-child {
@@ -137,10 +147,10 @@ body {
   }
 
   + .background:not(.down-scroll) {
-    transform: translate3d(0, -$parallax-offset / 2, 0);
+    transform: translate3d(0, math.div(-$parallax-offset, 2), 0);
 
     .content-wrapper {
-      transform: translateY($parallax-offset / 2);
+      transform: translateY(math.div($parallax-offset, 2));
     }
   }
 }

@@ -1,5 +1,6 @@
 @import "../../../../sass/styles";
 @import "../../../../sass/font-awesome/font-awesome-icon-hover";
+$default-color: #222222;
 
 h1 {
   font-family: Arial, serif;
@@ -12,7 +13,6 @@ h1 {
   box-shadow: 6px 6px 2px 1px rgba(0, 0, 255, .2);
 }
 
-$default-color: #222222;
 li {
   font-family: Lato, sans-serif;
   outline: none;
@@ -63,13 +63,16 @@ li {
     border-bottom-left-radius: 4px;
   }
 
-  a:visited{
-    color: $default-color;
-  }
-
   & + li {
     margin-left: 0;
   }
+}
+
+.service-icons:visited{
+  color: $default-color;
+}
+.service-icons{
+  color: $default-color;
 }
 
 fa-icon {
