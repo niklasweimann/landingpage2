@@ -1,7 +1,12 @@
 <div class="side-nav-bar-content">
+  <img src="../../../assets/logo.svg" class="logo" alt="Logo - Niklas Weimann">
+  <h1>Sites</h1>
+  <hr>
   <ul class="side-nav-bar-menu">
-    <li *ngFor="let navItem of navItems" (click)="onNavigationSelection(navItem)"><a
+    <li *ngFor="let navItem of navItems" (click)="onNavigationSelection(navItem)" class="vertical-navbar"><a
       [ngClass]="{'active': navItem.Active}">{{ navItem.Label }}</a></li>
   </ul>
-  <hosted-services-component></hosted-services-component>
+  <footer>
+    <hosted-services-component></hosted-services-component>
+  </footer>
 </div>

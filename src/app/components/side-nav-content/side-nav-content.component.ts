@@ -12,7 +12,7 @@ import {RouteMap} from './route-map.model';
 export class SideNavContentComponent implements OnDestroy {
   public navItems: RouteMap[] = [
     new RouteMap('Main', ''),
-    new RouteMap('Gallery', 'gallery')
+    //new RouteMap('Gallery', 'gallery')
   ];
   private subscriptions: Subscription[] = [];
   constructor(private router: Router) {

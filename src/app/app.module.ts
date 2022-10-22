@@ -24,7 +24,7 @@ import { GalleryComponent } from './pages/gallery/gallery/gallery.component';
     SideNavContentComponent,
     MainComponent,
     FirstSectionComponent,
-    GalleryComponent
+    GalleryComponent,
   ],
   imports: [
     BrowserModule,

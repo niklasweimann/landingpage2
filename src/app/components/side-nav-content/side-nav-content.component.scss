@@ -1,15 +1,22 @@
 .side-nav-bar-content {
   flex: 1;
 
+  .logo {
+    margin-bottom: 1em;
+    -webkit-filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .7));
+    filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .7));
+  }
+
   .side-nav-bar-menu {
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
-  li {
+  li.vertical-navbar {
     font-size: 1.25em;
-    margin-bottom: 32px;
+    margin-bottom: 1em;
+    margin-top: 1em;
     cursor: pointer;
 
     a {
@@ -23,4 +30,23 @@
       font-weight: bolder;
     }
   }
+
+  footer{
+    position: absolute;
+    float: bottom;
+    bottom: 0;
+    margin-bottom: 1em;
+  }
+}
+
+h1 {
+  font-family: Arial, serif;
+  margin-bottom: 0;
+}
+
+hr {
+  height: 2px;
+  border-width: 0;
+  color: gray;
+  background-color: gray
 }

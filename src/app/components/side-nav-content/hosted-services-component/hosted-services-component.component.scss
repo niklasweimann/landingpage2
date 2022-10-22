@@ -6,23 +6,6 @@ h1 {
   margin-bottom: 0;
 }
 
-li:hover{
-  background-color: #dddddd;
-  transform: translate(0, 1px);
-  &.gitlab>a {
-    color: $color-gitlab;
-  }
-  &.bookStack>a {
-    color: $color-bookStack;
-  }
-  &.nexCloud>a {
-    color: $color-nexCloud;
-  }
-  &.wordPress>a {
-    color: $color-wordPress;
-  }
-}
-
 .multi-button {
   display: inline-block;
   position: relative;
@@ -35,7 +18,7 @@ li {
   outline: none;
   display: inline-block;
   place-items: center;
-  font-weight: bold;
+  font-size: 1.5em;
   background-color: #eeeeee;
   border: none;
   color: $default-color;
@@ -43,46 +26,50 @@ li {
   padding: 10px;
   margin-bottom: 0;
   transition: background-color .4s;
-}
 
-li:hover {
+  &:hover {
+    background-color: #dddddd;
+    transform: translate(0, 1px);
 
-}
+    &.gitlab > a {
+      color: $color-gitlab;
+    }
 
-button:active {
-  background-color: #cccccc;
-  transform: translate(0, 2px);
-}
+    &.bookStack > a {
+      color: $color-bookStack;
+    }
 
-li:visited {
-  color: white;
-}
+    &.nexCloud > a {
+      color: $color-nexCloud;
+    }
 
-a:visited {
-  color: $default-color;
-}
+    &.wordPress > a {
+      color: $color-wordPress;
+    }
+  }
 
-li + li {
-  margin-left: 0;
-}
+  &:visited {
+    color: white;
+  }
 
-li:first-child {
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 4px;
-}
+  &:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-right-width: 1px;
+  }
 
-li:last-child {
-  border-top-right-radius: 4px;
-  border-bottom-left-radius: 0;
-  border-right-width: 1px;
-}
+  &:first-child {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 4px;
+  }
 
-.outer-left {
-  border-radius: 6px 0 0 6px;
-}
+  a:visited{
+    color: $default-color;
+  }
 
-.outer-right {
-  border-radius: 0 6px 6px 0;
+  & + li {
+    margin-left: 0;
+  }
 }
 
 fa-icon {
@@ -92,11 +79,4 @@ fa-icon {
 ul {
   list-style: none;
   padding-inline-start: unset;
-}
-
-hr {
-  height: 2px;
-  border-width: 0;
-  color: gray;
-  background-color: gray
 }
