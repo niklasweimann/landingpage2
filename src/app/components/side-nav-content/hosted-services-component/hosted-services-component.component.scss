@@ -23,7 +23,6 @@ li {
   border: none;
   color: $default-color;
   cursor: pointer;
-  padding: 10px;
   margin-bottom: 0;
   transition: background-color .4s;
 
@@ -46,6 +45,11 @@ li {
     &.wordPress > a {
       color: $color-wordPress;
     }
+  }
+
+  a {
+    display: block;
+    padding: 0.5em;
   }
 
   &:visited {
