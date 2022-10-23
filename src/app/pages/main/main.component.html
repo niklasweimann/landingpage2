@@ -1,12 +1,12 @@
 <div class="slides">
-  <section class="background" #section>
+  <section class="background" #section *ngFor="let page of pages; index as i">
     <div class="content-wrapper">
-      <first-section-component></first-section-component>
+      <ng-container *ngComponentOutlet="page.component" ></ng-container>
     </div>
-  </section>
-  <section class="background" #section>
-    <div class="content-wrapper">
-      <app-social-media-component></app-social-media-component>
+    <div class="navigation-arrow">
+      <a (click)="navigateUsingArrow()">
+        <fa-icon [icon]="getArrow()"></fa-icon>
+      </a>
     </div>
   </section>
 </div>

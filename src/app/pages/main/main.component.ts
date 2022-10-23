@@ -1,7 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChildren} from '@angular/core';
 import {fromEvent, Subscription} from "rxjs";
 import {debounceTime} from "rxjs/operators";
-import {Title} from "@angular/platform-browser";
+import {faArrowCircleDown, faArrowCircleUp, faCircle} from "@fortawesome/free-solid-svg-icons";
+import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
+import {FirstSectionComponent} from "./main-component/first-section.component";
+import {SocialMediaComponentComponent} from "./social-media-component/social-media-component.component";
 
 @Component({
   selector: 'app-main',
@@ -14,11 +17,13 @@ export class MainComponent implements OnInit {
   private isFirefox = false;
   private currentSlideIndex = 0;
   private slidesCount: number = 0;
-  private ticking = false;
+  private isDownScrolling: boolean = false;
+  public isTicking = false;
 
-  constructor(private titleService: Title) {
-    this.titleService.setTitle("Niklas Weimann")
-  }
+  public pages = [
+    {component: FirstSectionComponent},
+    {component: SocialMediaComponentComponent}
+  ];
 
   public ngOnDestroy(): void {
     this.subscriptions.forEach(x => x.unsubscribe());
@@ -38,7 +43,7 @@ export class MainComponent implements OnInit {
     }));
     this.subscriptions.push(
       fromEvent<any>(window, this.isFirefox ? 'DOMMouseScroll' : 'wheel')
-        .pipe(debounceTime(100)).subscribe((event) => {
+        .pipe(debounceTime(10)).subscribe((event) => {
         this.handleScrollEvent(event);
         event.preventDefault();
       })
@@ -60,11 +65,13 @@ export class MainComponent implements OnInit {
     const xDiff = this.xDown - xUp;
     const yDiff = this.yDown - yUp;
 
-    if (Math.abs(xDiff) <= Math.abs(yDiff)) {
-      if (yDiff > 0) {
-        this.scrollDown();
-      } else {
-        this.scrollUp();
+    if (!this.isTicking) {
+      if (Math.abs(xDiff) <= Math.abs(yDiff)) {
+        if (yDiff > 0) {
+          this.scrollDown();
+        } else {
+          this.scrollUp();
+        }
       }
     }
 
@@ -75,14 +82,14 @@ export class MainComponent implements OnInit {
   public handleScrollEvent(event: WheelEvent): void {
     this.slidesCount = this.sections.toArray().length;
     let delta: number;
-    const deltaLimit = 30;
+    const deltaLimit = 1;
     if (this.isFirefox) {
       delta = event.detail * (-120);
     } else {
       delta = -event.deltaY;
     }
 
-    if (!this.ticking) {
+    if (!this.isTicking) {
       if (delta <= -deltaLimit) {
         this.scrollDown();
       }
@@ -93,7 +100,8 @@ export class MainComponent implements OnInit {
   }
 
   private scrollDown(): void {
-    this.ticking = true;
+    this.isTicking = true;
+    this.isDownScrolling = true;
     if (this.currentSlideIndex !== this.slidesCount - 1) {
       this.currentSlideIndex++;
       this.nextItem();
@@ -102,7 +110,8 @@ export class MainComponent implements OnInit {
   }
 
   private scrollUp(): void {
-    this.ticking = true;
+    this.isTicking = true;
+    this.isDownScrolling = false;
     if (this.currentSlideIndex !== 0) {
       this.currentSlideIndex--;
     }
@@ -122,10 +131,51 @@ export class MainComponent implements OnInit {
     cs.nativeElement.classList.add('up-scroll');
   }
 
+  public navigateUsingArrow(): void {
+    if (this.isTicking) {
+      return;
+    }
+    if (this.currentSlideIndex == 0) {
+      this.scrollDown();
+      return;
+    }
+    if (this.currentSlideIndex === this.sections.length - 1) {
+      this.scrollUp()
+      return;
+    }
+    if (this.isDownScrolling) {
+      this.scrollDown();
+      return;
+    }
+    if (!this.isDownScrolling) {
+      this.scrollUp();
+      return;
+    }
+  }
+
+  public getArrow(): IconDefinition {
+    if (this.isTicking) {
+      return faCircle;
+    }
+    if (this.currentSlideIndex == 0) {
+      return faArrowCircleDown;
+    }
+    if (this.currentSlideIndex === this.sections.length - 1) {
+      return faArrowCircleUp;
+    }
+    if (this.isDownScrolling) {
+      return faArrowCircleDown;
+    }
+    if (!this.isDownScrolling) {
+      return faArrowCircleUp;
+    }
+    return faCircle;
+  }
+
   private slideDurationTimeout(): void {
     setTimeout(() => {
-      this.ticking = false;
-    }, 600);
+      this.isTicking = false;
+    }, 400);
   }
 
 }
