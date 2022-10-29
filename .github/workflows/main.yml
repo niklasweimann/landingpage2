@@ -1,6 +1,9 @@
+on:
+  push:
+    branches:
+      - '*'
 jobs:
   build:
-    on: push
     runs-on: ubuntu-latest
     defaults:
       run:
