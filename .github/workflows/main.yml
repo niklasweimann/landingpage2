@@ -1,0 +1,36 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+      - name: Cache NPM dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: npm install
+        run: npm install
+      - name: npm install Angular
+        run: npm install -g @angular/cli > /dev/null
+      - name: npm build angular
+        run: ng build landingpage2 -c production
+      - name: Delete Existing Files
+        run : sudo sshpass -p ${{ secrets.SSH_PASS }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'rm -rf /opt/dockervolumes/apache/public_html/*'
+
+      - name: Compress and Copy New Files to server
+        run : |
+          cd dist/landingpage2/
+          tar -czvf page.tar.gz ./
+          sudo sshpass -p ${{ secrets.SSH_PASS }} scp -v -o StrictHostKeyChecking=no -r page.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/opt/dockervolumes/apache/public_html/
+      - name: Uncompress new Files
+        run : sudo sshpass -p ${{ secrets.SSH_PASS }} -v ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cd /opt/dockervolumes/apache/public_html/ && tar -xzvf page.tar.gz && rm page.tar.gz'
