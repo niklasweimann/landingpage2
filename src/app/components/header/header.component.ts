@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {NavigationService} from '../../services/navigation.service';
 
@@ -10,7 +10,9 @@ import {NavigationService} from '../../services/navigation.service';
 })
 export class HeaderComponent implements OnInit {
   public fabar = faBars;
-  constructor(private navService: NavigationService) { }
+
+  constructor(private navService: NavigationService) {
+  }
 
   ngOnInit(): void {
   }

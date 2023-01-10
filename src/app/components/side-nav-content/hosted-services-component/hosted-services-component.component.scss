@@ -1,5 +1,6 @@
 @import "../../../../sass/styles";
 @import "../../../../sass/font-awesome/font-awesome-icon-hover";
+
 $default-color: #222222;
 
 h1 {
@@ -72,10 +73,11 @@ li {
   }
 }
 
-.service-icons:visited{
+.service-icons:visited {
   color: $default-color;
 }
-.service-icons{
+
+.service-icons {
   color: $default-color;
 }
 

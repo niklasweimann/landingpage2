@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {faGitlab, faWordpress} from "@fortawesome/free-brands-svg-icons";
 import {faBook, faCloud} from "@fortawesome/free-solid-svg-icons";
 
@@ -12,7 +12,6 @@ export class HostedServicesComponentComponent implements OnInit {
   faboook = faBook;
   faCloud = faCloud;
   faWordpress = faWordpress;
-  constructor() { }
 
   ngOnInit() {
   }

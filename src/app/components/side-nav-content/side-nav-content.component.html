@@ -1,9 +1,9 @@
 <div class="side-nav-bar-content">
-  <img src="../../../assets/logo.svg" class="logo" alt="Logo - Niklas Weimann">
+  <img alt="Logo - Niklas Weimann" class="logo" src="../../../assets/logo.svg">
   <h1>Sites</h1>
   <hr>
   <ul class="side-nav-bar-menu">
-    <li *ngFor="let navItem of navItems" (click)="onNavigationSelection(navItem)" class="vertical-navbar"><a
+    <li (click)="onNavigationSelection(navItem)" *ngFor="let navItem of navItems" class="vertical-navbar"><a
       [ngClass]="{'active': navItem.Active}">{{ navItem.Label }}</a></li>
   </ul>
   <footer>

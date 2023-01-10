@@ -3,8 +3,9 @@
     <div class="portrait"></div>
   </div>
   <div class="text">
-    <h1><span appTypewriter [startDelay]="1000" [delay]="2500" [speed]="200" [includePipe]="true" [fastDelete]="true"
-              [toType]="typewriterText"></span></h1>
+    <h1><span [delay]="2500" [fastDelete]="true" [includePipe]="true" [speed]="200" [startDelay]="1000"
+              [toType]="typewriterText"
+              appTypewriter></span></h1>
     <p>I am a {{age}}-year-old <a href="https://github.com/niklasweimann" title="My Github profile">software
       developer</a>
       currently working at <a href="https://lapid.de" title="My employer">LapID Service GmbH</a> and studying computer

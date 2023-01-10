@@ -1,19 +1,19 @@
 <!-- side bar main wrapper -->
-<div class="side-nav-bar"
-     [ngClass]="{ 'side-nav-bar-collapsed': !(showSideNav | async) }">
+<div [ngClass]="{ 'side-nav-bar-collapsed': !(showSideNav | async) }"
+     class="side-nav-bar">
 
   <!-- overlay -->
-  <div class="side-nav-bar-overlay"
-       [ngStyle]="{ 'transition': 'background-color ' + duration + 's, visibility ' + duration + 's' }"
+  <div (click)="onSidebarClose()"
        [ngClass]="{ 'side-nav-bar-overlay-collapsed': !(showSideNav | async) }"
-       (click)="onSidebarClose()"></div>
+       [ngStyle]="{ 'transition': 'background-color ' + duration + 's, visibility ' + duration + 's' }"
+       class="side-nav-bar-overlay"></div>
 
   <!-- side bar-->
-  <div class="side-nav-bar-menu-container"
-       [ngStyle]="getSideNavBarStyle(showSideNav | async)">
+  <div [ngStyle]="getSideNavBarStyle(showSideNav | async)"
+       class="side-nav-bar-menu-container">
 
     <!-- close button -->
-    <div><span class="material-icons side-nav-bar-close" (click)="onSidebarClose()"><fa-icon [icon]="fatimes"></fa-icon></span>
+    <div><span (click)="onSidebarClose()" class="material-icons side-nav-bar-close"><fa-icon [icon]="fatimes"></fa-icon></span>
     </div>
 
     <!-- side bar content -->

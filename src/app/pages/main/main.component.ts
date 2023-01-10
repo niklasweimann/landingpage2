@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChildren} from '@angular/core';
+import {Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {fromEvent, Subscription} from "rxjs";
 import {debounceTime} from "rxjs/operators";
 import {faArrowCircleDown, faArrowCircleUp, faCircle} from "@fortawesome/free-solid-svg-icons";
@@ -12,37 +12,43 @@ import {SocialMediaComponentComponent} from "./social-media-component/social-med
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  @ViewChildren('section') private sections: any;
+  public isTicking = false;
+  public pages = [
+    {component: FirstSectionComponent},
+    {component: SocialMediaComponentComponent}
+  ];
+  @ViewChildren('section') private sections: QueryList<ElementRef<HTMLInputElement>>;
   private subscriptions: Subscription[] = [];
   private isFirefox = false;
   private currentSlideIndex = 0;
   private slidesCount: number = 0;
   private isDownScrolling: boolean = false;
-  public isTicking = false;
+  private xDown: number | null = null;
+  private yDown: number | null = null;
 
-  public pages = [
-    {component: FirstSectionComponent},
-    {component: SocialMediaComponentComponent}
-  ];
+  constructor() {
+    this.sections = new QueryList<ElementRef<HTMLInputElement>>();
+  }
 
   public ngOnDestroy(): void {
     this.subscriptions.forEach(x => x.unsubscribe());
   }
 
   public ngOnInit(): void {
+    console.log(this.sections)
     const userAgent = navigator.userAgent;
     this.isFirefox = /Firefox/i.test(userAgent);
-    this.subscriptions.push(fromEvent<any>(window, 'touchstart').pipe(debounceTime(100)).subscribe((event) => {
+    this.subscriptions.push(fromEvent<TouchEvent>(window, 'touchstart').pipe(debounceTime(100)).subscribe((event) => {
       const firstTouch = event.touches[0];
       this.xDown = firstTouch.clientX;
       this.yDown = firstTouch.clientY;
     }));
-    this.subscriptions.push(fromEvent<any>(window, 'touchmove').pipe(debounceTime(100)).subscribe((event) => {
+    this.subscriptions.push(fromEvent<TouchEvent>(window, 'touchmove').pipe(debounceTime(100)).subscribe((event) => {
       this.handleTouchMove(event);
       event.preventDefault();
     }));
     this.subscriptions.push(
-      fromEvent<any>(window, this.isFirefox ? 'DOMMouseScroll' : 'wheel')
+      fromEvent<WheelEvent>(window, this.isFirefox ? 'DOMMouseScroll' : 'wheel')
         .pipe(debounceTime(10)).subscribe((event) => {
         this.handleScrollEvent(event);
         event.preventDefault();
@@ -50,37 +56,8 @@ export class MainComponent implements OnInit {
     );
   }
 
-  private xDown: number | null = null;
-  private yDown: number | null = null;
-
-  private handleTouchMove(evt: TouchEvent) {
-    this.slidesCount = this.sections.toArray().length;
-    if (!this.xDown || !this.yDown) {
-      return;
-    }
-
-    const xUp = evt.touches[0].clientX;
-    const yUp = evt.touches[0].clientY;
-
-    const xDiff = this.xDown - xUp;
-    const yDiff = this.yDown - yUp;
-
-    if (!this.isTicking) {
-      if (Math.abs(xDiff) <= Math.abs(yDiff)) {
-        if (yDiff > 0) {
-          this.scrollDown();
-        } else {
-          this.scrollUp();
-        }
-      }
-    }
-
-    this.xDown = null;
-    this.yDown = null;
-  };
-
   public handleScrollEvent(event: WheelEvent): void {
-    this.slidesCount = this.sections.toArray().length;
+    this.slidesCount = this.sections.length;
     let delta: number;
     const deltaLimit = 1;
     if (this.isFirefox) {
@@ -97,38 +74,6 @@ export class MainComponent implements OnInit {
         this.scrollUp();
       }
     }
-  }
-
-  private scrollDown(): void {
-    this.isTicking = true;
-    this.isDownScrolling = true;
-    if (this.currentSlideIndex !== this.slidesCount - 1) {
-      this.currentSlideIndex++;
-      this.nextItem();
-    }
-    this.slideDurationTimeout();
-  }
-
-  private scrollUp(): void {
-    this.isTicking = true;
-    this.isDownScrolling = false;
-    if (this.currentSlideIndex !== 0) {
-      this.currentSlideIndex--;
-    }
-    this.previousItem();
-    this.slideDurationTimeout();
-  }
-
-  private nextItem(): void {
-    const ps = this.sections.toArray()[this.currentSlideIndex - 1];
-    ps.nativeElement.classList.remove('up-scroll');
-    ps.nativeElement.classList.add('down-scroll');
-  }
-
-  private previousItem(): void {
-    const cs: ElementRef<HTMLElement> = this.sections.toArray()[this.currentSlideIndex];
-    cs.nativeElement.classList.remove('down-scroll');
-    cs.nativeElement.classList.add('up-scroll');
   }
 
   public navigateUsingArrow(): void {
@@ -170,6 +115,64 @@ export class MainComponent implements OnInit {
       return faArrowCircleUp;
     }
     return faCircle;
+  }
+
+  private handleTouchMove(evt: TouchEvent) {
+    this.slidesCount = this.sections.length;
+    if (!this.xDown || !this.yDown) {
+      return;
+    }
+
+    const xUp = evt.touches[0].clientX;
+    const yUp = evt.touches[0].clientY;
+
+    const xDiff = this.xDown - xUp;
+    const yDiff = this.yDown - yUp;
+
+    if (!this.isTicking) {
+      if (Math.abs(xDiff) <= Math.abs(yDiff)) {
+        if (yDiff > 0) {
+          this.scrollDown();
+        } else {
+          this.scrollUp();
+        }
+      }
+    }
+
+    this.xDown = null;
+    this.yDown = null;
+  };
+
+  private scrollDown(): void {
+    this.isTicking = true;
+    this.isDownScrolling = true;
+    if (this.currentSlideIndex !== this.slidesCount - 1) {
+      this.currentSlideIndex++;
+      this.nextItem();
+    }
+    this.slideDurationTimeout();
+  }
+
+  private scrollUp(): void {
+    this.isTicking = true;
+    this.isDownScrolling = false;
+    if (this.currentSlideIndex !== 0) {
+      this.currentSlideIndex--;
+    }
+    this.previousItem();
+    this.slideDurationTimeout();
+  }
+
+  private nextItem(): void {
+    const ps = this.sections.toArray()[this.currentSlideIndex - 1];
+    ps.nativeElement.classList.remove('up-scroll');
+    ps.nativeElement.classList.add('down-scroll');
+  }
+
+  private previousItem(): void {
+    const cs: ElementRef<HTMLElement> = this.sections.toArray()[this.currentSlideIndex];
+    cs.nativeElement.classList.remove('down-scroll');
+    cs.nativeElement.classList.add('up-scroll');
   }
 
   private slideDurationTimeout(): void {

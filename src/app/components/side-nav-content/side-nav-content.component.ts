@@ -1,5 +1,5 @@
 import {Component, OnDestroy, ViewEncapsulation} from '@angular/core';
-import {Router, NavigationEnd} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 import {filter, Subscription} from "rxjs";
 import {RouteMap} from './route-map.model';
 
@@ -15,13 +15,14 @@ export class SideNavContentComponent implements OnDestroy {
     //new RouteMap('Gallery', 'gallery')
   ];
   private subscriptions: Subscription[] = [];
+
   constructor(private router: Router) {
     this.subscriptions.push(
       this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
         const currentRoute = (event as NavigationEnd).url;
         this.navItems.forEach(rm => rm.Active = false);
         const index = this.navItems.findIndex(rm => rm.Route === currentRoute.substring(1))
-        if(index >= 0){
+        if (index >= 0) {
           this.navItems[index].Active = true;
         }
         console.log(currentRoute)

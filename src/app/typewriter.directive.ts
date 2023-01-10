@@ -1,41 +1,53 @@
 import {AfterViewInit, Directive, ElementRef, Input} from '@angular/core';
 
-@Directive({ selector: '[appTypewriter]' })
+@Directive({selector: '[appTypewriter]'})
 export class TypewriterDirective implements AfterViewInit {
   private loopNumber = 0;
   private isDeleting = true;
   private displayText = '';
 
-  private _toType = [];
-  private _startDelay = 0;
-  private _delay = 2000;
-  private _speed = 150;
-  private _includePipe = false;
-  private _fastDelete = false;
+  constructor(private element: ElementRef) {
+  }
 
-  @Input() set toType(value: any) {
+  private _toType: string | string[] = [];
+
+  @Input() set toType(value: string | string[]) {
     if (typeof value === 'string') {
       this._toType = JSON.parse(value);
     } else {
       this._toType = value;
     }
   }
+
+  private _startDelay = 0;
+
   @Input() set startDelay(value: number) {
     this._startDelay = value;
   }
+
+  private _delay = 2000;
+
   @Input() set delay(value: number) {
     this._delay = value;
   }
+
+  private _speed = 150;
+
   @Input() set speed(value: number) {
     this._speed = value;
   }
+
+  private _includePipe = false;
+
   @Input() set includePipe(value: boolean) {
     this._includePipe = value;
   }
+
+  private _fastDelete = false;
+
   @Input() set fastDelete(value: boolean) {
     this._fastDelete = value;
   }
-  constructor(private element: ElementRef) { }
 
   public ngAfterViewInit(): void {
     if (this._includePipe) {

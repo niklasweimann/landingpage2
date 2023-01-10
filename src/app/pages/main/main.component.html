@@ -1,7 +1,7 @@
 <div class="slides">
-  <section class="background" #section *ngFor="let page of pages; index as i">
+  <section #section *ngFor="let page of pages; index as i" class="background">
     <div class="content-wrapper">
-      <ng-container *ngComponentOutlet="page.component" ></ng-container>
+      <ng-container *ngComponentOutlet="page.component"></ng-container>
     </div>
     <div class="navigation-arrow">
       <a (click)="navigateUsingArrow()">

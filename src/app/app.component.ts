@@ -1,11 +1,4 @@
-import {
-  Component, ElementRef,
-  OnDestroy,
-  OnInit, ViewChildren,
-  ViewEncapsulation
-} from '@angular/core';
-import {fromEvent, Subscription} from 'rxjs';
-import {debounceTime} from 'rxjs/operators';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {SideNavDirection} from "./side-nav-direction";
 
 @Component({
