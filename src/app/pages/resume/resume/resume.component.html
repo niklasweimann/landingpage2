@@ -1,0 +1,185 @@
+<div class="area">
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <div class="background">
+    <main class="bd-container">
+      <div class="resume">
+        <div class="resume__left">
+          <section class="home">
+            <div class="home__container section bd-grid">
+              <div class="home__data bd-grid">
+                <div alt="" class="home__img"></div>
+                <h1 class="home__title"><b>Niklas Weimann</b></h1>
+                <h3 class="home__profession">DevOps Engineer</h3>
+              </div>
+            </div>
+          </section>
+          <div class="contact_group">
+            <section class="section">
+              <h2 class="section-title">Kontakt</h2>
+              <div class="social__container bd-grid">
+                <a href="https://www.google.com/maps/place/Siegen">
+                  <fa-icon [fixedWidth]="true" [icon]="homeIcon"></fa-icon>
+                  57072 Siegen
+                </a>
+                <a href="mailto:{{externalLinkService.mailAddress}}">
+                  <fa-icon [fixedWidth]="true" [icon]="mailIcon"></fa-icon>
+                  {{externalLinkService.mailAddress}}
+                </a>
+              </div>
+            </section>
+
+            <section class="section">
+              <h2 class="section-title">Soziale Netzwerke</h2>
+              <div class="social__container bd-grid">
+                <a class="social__link" href="{{externalLinkService.linkedInLink}}" target="_blank">
+                  <fa-icon [fixedWidth]="true" [icon]="linkedInIcon" class="fa fa-linkedin"></fa-icon>
+                  @{{externalLinkService.linkedInUsername}}
+                </a>
+                <a class="social__link" href="{{externalLinkService.twitterLink}}" target="_blank">
+                  <fa-icon [fixedWidth]="true" [icon]="twitterIcon" class="fa fa-twitter"></fa-icon>
+                  @{{externalLinkService.twitterUsername}}
+                </a>
+                <a class="social__link" href="{{externalLinkService.githubLink}}" target="_blank">
+                  <fa-icon [fixedWidth]="true" [icon]="githubIcon" class="fa fa-github"></fa-icon>
+                  @{{externalLinkService.githubUsername}}
+                </a>
+              </div>
+            </section>
+            <a class="mail-request-button"
+               href="mailto:niklas@weimann.io?subject=Anfrage Lebenslauf&body=Hallo Niklas,%0D%0A%0D%0Aich bin auf deiner Website auf deinen Lebenslauf gestoßen. Könntest du mir bitte die vollständige Version zukommen lassen? %0D%0A%0D%0A Freundliche Grüße%0D%0A<NAME>,<Firma>">Vollständigen
+              Lebenslauf anfragen</a>
+          </div>
+        </div>
+
+        <div class="resume__right">
+          <section class="experience section">
+            <h2 class="experience section-title">Berufliche Laufbahn</h2>
+            <hr>
+            <div class="experience__container bd-grid">
+              <div class="timeline">
+                <div class="outer">
+                  <div class="card">
+                    <div class="info">
+                      <p class="title dot">Mai 2021<br> bis <br>Heute</p>
+                      <div class="info_content">
+                        <h3><a href="https://www.lapid.de">LapID Service GmbH</a></h3>
+                        <p>DevOps Engineer</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="info">
+                      <p class="title dot">Sep. 2018<br> bis <br>April 2021</p>
+                      <div class="info_content">
+                        <h3><a href="https://www.lapid.de">LapID Service GmbH</a></h3>
+                        <p>Working Student - Software Engineer</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="education section" id="education">
+            <h2 class="section-title">Ausbildung</h2>
+            <hr>
+            <div class="education__container bd-grid">
+              <div class="timeline">
+                <div class="outer">
+                  <div class="card">
+                    <div class="info">
+                      <p class="title dot">Sep. 2022<br> bis <br>Heute</p>
+                      <div class="info_content">
+                        <h3><a href="https://www.fernuni-hagen.de">Fernuniversität Hagen</a></h3>
+                        <p>M. Sc. Informatik</p>
+                        <p>Schwerpunkt: IT-Sicherheit</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="info">
+                      <p class="title dot">Sep. 2017<br> bis <br>Jun. 2021</p>
+                      <div class="info_content">
+                        <h3><a href="https://www.uni-siegen.de/start/">Universität Siegen</a></h3>
+                        <p>B. Sc. Informatik</p>
+                        <p>Schwerpunkt: Softwaretechnik</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="info">
+                      <p class="title dot">Aug. 2009<br> bis <br>Jun. 2017</p>
+                      <div class="info_content">
+                        <h3><a href="https://www.stiftkeppel.schule/">Gymnasium Stift-Keppel</a></h3>
+                        <p>Allgemeine Hochschulreife</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="section">
+            <h2 class="experience section-title">Ehrenamtliche Arbeit</h2>
+            <hr>
+            <div class="timeline">
+              <div class="outer">
+                <div class="card">
+                  <div class="info">
+                    <p class="title dot">Aug. 2017<br> bis <br>Juni 2021</p>
+                    <div class="info_content">
+                      <h3>Ev. Kirchengemeinde Erndtebrück</h3>
+                      <p>Ehrenamtlicher Mitarbeiter für die Öffentlichkeitsarbeit</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="certificate section" id="certificates">
+            <h2 class="section-title">Skills</h2>
+            <hr>
+            <div class="certificate__container bd-grid">
+              <div class="card card-right">
+                <div class="info">
+                  <p class="title">Sprachen</p>
+                  <div class="info_content">
+                    <ul>
+                      <li><b>Deutsch</b>: Muttersprache</li>
+                      <li><b>Englisch</b>: Gut</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card card-right">
+                <div class="info">
+                  <p class="title">Zertifikate</p>
+                  <div class="info_content">
+                    <ul>
+                      <li><a href="https://www.credly.com/badges/27c74518-ed8e-466c-aea9-1f8690b2be91/public_url">Gitlab
+                        Certified Associate</a></li>
+                      <li>Ausbilder nach AEVO (AdA-Schein)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+

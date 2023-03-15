@@ -3,7 +3,7 @@
      class="side-nav-bar">
 
   <!-- overlay -->
-  <div (click)="onSidebarClose()"
+  <div (click)="closeSidebar()"
        [ngClass]="{ 'side-nav-bar-overlay-collapsed': !(showSideNav | async) }"
        [ngStyle]="{ 'transition': 'background-color ' + duration + 's, visibility ' + duration + 's' }"
        class="side-nav-bar-overlay"></div>
@@ -13,12 +13,12 @@
        class="side-nav-bar-menu-container">
 
     <!-- close button -->
-    <div><span (click)="onSidebarClose()" class="material-icons side-nav-bar-close"><fa-icon [icon]="fatimes"></fa-icon></span>
+    <div><span (click)="closeSidebar()" class="material-icons side-nav-bar-close"><fa-icon [icon]="fatimes"></fa-icon></span>
     </div>
 
     <!-- side bar content -->
     <div class="side-nav-bar-content-container">
-      <ng-container *ngTemplateOutlet="sidenavTemplateRef"></ng-container>
+      <app-side-nav-content (onNavigationSelected)="closeSidebar()"></app-side-nav-content>
     </div>
   </div>
 </div>

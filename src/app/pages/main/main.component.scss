@@ -13,6 +13,10 @@ $content-offset: 40vh;
 $transition-speed: 1.2s;
 $slide-number: 2;
 
+html, body{
+  overflow: hidden;
+}
+
 .navigation-arrow {
   z-index: 999;
   font-size: 3em;

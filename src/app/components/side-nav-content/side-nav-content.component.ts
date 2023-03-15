@@ -1,4 +1,4 @@
-import {Component, OnDestroy, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, Output, ViewEncapsulation} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter, Subscription} from "rxjs";
 import {RouteMap} from './route-map.model';
@@ -12,8 +12,10 @@ import {RouteMap} from './route-map.model';
 export class SideNavContentComponent implements OnDestroy {
   public navItems: RouteMap[] = [
     new RouteMap('Main', ''),
+    new RouteMap('Resume', 'resume'),
     //new RouteMap('Gallery', 'gallery')
   ];
+  @Output("onNavigationSelected") parentFun: EventEmitter<boolean> = new EventEmitter();
   private subscriptions: Subscription[] = [];
 
   constructor(private router: Router) {
@@ -34,6 +36,7 @@ export class SideNavContentComponent implements OnDestroy {
   }
 
   onNavigationSelection(navItem: RouteMap): void {
-    this.router.navigate([navItem.Route]);
+    this.parentFun.emit(true)
+    this.router.navigate([navItem.Route]).then(r => r);
   }
 }

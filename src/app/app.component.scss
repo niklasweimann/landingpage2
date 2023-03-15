@@ -1,7 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-
 html, body {
-  overflow: hidden;
   margin: 0;
 }
 
@@ -13,16 +10,22 @@ body {
 
 .sidebar-button {
   z-index: 1000;
-  position: absolute;
+  position: fixed !important;
   top: 0.3em;
   left: 0.5em;
 }
 
 .main-container {
   color: #FFF;
+  overflow: auto;
 
   section {
     flex: 1;
   }
 }
 
+@media print {
+  .sidebar-button{
+    display: none;
+  }
+}

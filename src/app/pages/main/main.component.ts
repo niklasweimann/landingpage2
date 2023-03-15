@@ -17,7 +17,7 @@ export class MainComponent implements OnInit {
     {component: FirstSectionComponent},
     {component: SocialMediaComponentComponent}
   ];
-  @ViewChildren('section') private sections: QueryList<ElementRef<HTMLInputElement>>;
+  @ViewChildren('section') private readonly sections: QueryList<ElementRef<HTMLInputElement>>;
   private subscriptions: Subscription[] = [];
   private isFirefox = false;
   private currentSlideIndex = 0;

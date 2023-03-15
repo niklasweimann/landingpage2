@@ -14,6 +14,7 @@ import {SideNavContentComponent} from './components/side-nav-content/side-nav-co
 import {MainComponent} from './pages/main/main.component';
 import {AppRoutingModule} from './app-routing.module';
 import {GalleryComponent} from './pages/gallery/gallery/gallery.component';
+import { ResumeComponent } from './pages/resume/resume/resume.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {GalleryComponent} from './pages/gallery/gallery/gallery.component';
     MainComponent,
     FirstSectionComponent,
     GalleryComponent,
+    ResumeComponent,
   ],
   imports: [
     BrowserModule,

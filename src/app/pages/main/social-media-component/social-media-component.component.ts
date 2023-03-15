@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {faGithub, faLinkedin, faTwitter} from '@fortawesome/free-brands-svg-icons';
 import {faAt, faKey} from '@fortawesome/free-solid-svg-icons';
+import {ExternalLinkGeneratorService} from "../../../services/external-link-generator.service";
 
 @Component({
   selector: 'app-social-media-component',
@@ -15,7 +16,10 @@ export class SocialMediaComponentComponent implements OnInit {
   public keyIcon = faKey;
   public atIcon = faAt;
 
-  constructor() {
+  public externalLinkGeneratorService: ExternalLinkGeneratorService;
+
+  constructor(externalLinkGeneratorService: ExternalLinkGeneratorService) {
+    this.externalLinkGeneratorService = externalLinkGeneratorService;
   }
 
 

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, TemplateRef, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {Observable} from 'rxjs';
 import {NavigationService} from '../../services/navigation.service';
 import {SideNavDirection} from '../../side-nav-direction';
@@ -15,21 +15,19 @@ export class SideNavComponent implements OnInit {
   fatimes = faTimes
   showSideNav: Observable<boolean | null>;
 
-  @Input() sidenavTemplateRef: TemplateRef<any> | null;
   @Input() duration = 0.25;
   @Input() navWidth: number = window.innerWidth;
   @Input() direction: SideNavDirection = SideNavDirection.Left;
 
   constructor(private navService: NavigationService) {
     this.showSideNav = new Observable<boolean>();
-    this.sidenavTemplateRef = null;
   }
 
   ngOnInit(): void {
     this.showSideNav = this.navService.getShowNav();
   }
 
-  onSidebarClose(): void {
+  closeSidebar(): void {
     this.navService.setShowNav(false);
   }
 
