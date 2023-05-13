@@ -13,6 +13,8 @@ export class SideNavContentComponent implements OnDestroy {
   public navItems: RouteMap[] = [
     new RouteMap('Main', ''),
     new RouteMap('Resume', 'resume'),
+    //new RouteMap('RxTelegram', 'rxtelegram'),
+    new RouteMap('DotAid', 'dotaid')
     //new RouteMap('Gallery', 'gallery')
   ];
   @Output("onNavigationSelected") parentFun: EventEmitter<boolean> = new EventEmitter();

@@ -15,6 +15,8 @@ import {MainComponent} from './pages/main/main.component';
 import {AppRoutingModule} from './app-routing.module';
 import {GalleryComponent} from './pages/gallery/gallery/gallery.component';
 import { ResumeComponent } from './pages/resume/resume/resume.component';
+import { RxtelegramComponent } from './pages/rxtelegram/rxtelegram.component';
+import { DotaidComponent } from './pages/dotaid/dotaid.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { ResumeComponent } from './pages/resume/resume/resume.component';
     FirstSectionComponent,
     GalleryComponent,
     ResumeComponent,
+    RxtelegramComponent,
+    DotaidComponent,
   ],
   imports: [
     BrowserModule,
