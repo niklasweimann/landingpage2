@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: '', component: MainComponent, title: 'Niklas Weimann'},
   {path: 'gallery', component: GalleryComponent, title: 'Gallery - Niklas Weimann'},
   {path: 'resume', component: ResumeComponent, title: 'Resume - Niklas Weimann'},
-  //{path: 'rxtelegram', component: RxtelegramComponent, title: 'RxTelegram - Niklas Weimann'},
+  {path: 'rxtelegram', component: RxtelegramComponent, title: 'RxTelegram - Niklas Weimann'},
   {path: 'dotaid', component: DotaidComponent, title: 'DotAid - Niklas Weimann'},
   {path: '**', component: MainComponent, title: 'Niklas Weimann'}, // fallback route
 ];

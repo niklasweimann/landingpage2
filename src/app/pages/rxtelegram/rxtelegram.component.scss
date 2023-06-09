@@ -30,26 +30,20 @@ body {
 }
 
 #cut {
-  background-color: rgb(85,131,241);
-  border: 1px solid rgb(85,131,241);
-
-}
-
-#cut {
-  background-color: rgb(85,131,241);
-  border: 1px solid rgb(85,131,241);
+  background-color: rgb(0, 72, 128);
+  border: 1px solid rgb(0, 72, 128);
 
 }
 
 #copy {
-  background-color: rgb(39,166,75);
-  border: 1px solid rgb(39,166,75);
+  background-color: #0067B5;
+  border: 1px solid #0067B5;
 
 }
 
 #paste {
-  background-color: rgb(242,185,42);
-  border: 1px solid rgb(242,185,42);
+  background-color: #47A4EC;
+  border: 1px solid #47A4EC;
 
 }
 
@@ -85,23 +79,6 @@ body {
   opacity: 1;
   right: 0;
 }
-
-#cut span:after {
-  font-family: FontAwesome;
-  content: "\f0c4";
-}
-
-#copy span:after {
-  font-family: FontAwesome;
-  content: "\f0c5";
-}
-
-#paste span:after {
-  font-family: FontAwesome;
-  content: "\f0ea";
-}
-
-
 
 .clouds {
   position: absolute;
