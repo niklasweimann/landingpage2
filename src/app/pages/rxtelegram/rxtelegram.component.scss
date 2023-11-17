@@ -5,6 +5,7 @@ body {
   width: 100%;
   height: 100%;
 }
+
 * {
   position: relative;
 }
@@ -16,37 +17,6 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-.multi-button {
-  background-color: white;
-  border: 1px solid white;
-  border-radius: 14px;
-  display: flex;
-  flex-direction: row;
-  -ms-flex-direction: row;
-  -webkit-flex-direction: row;
-  padding: 7px;
-  z-index: 10;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 15px 0 rgba(0, 0, 0, 0.1);
-}
-
-#cut {
-  background-color: rgb(0, 72, 128);
-  border: 1px solid rgb(0, 72, 128);
-
-}
-
-#copy {
-  background-color: #0067B5;
-  border: 1px solid #0067B5;
-
-}
-
-#paste {
-  background-color: #47A4EC;
-  border: 1px solid #47A4EC;
-
-}
-
 
 .button {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.09), 0 6px 15px 0 rgba(0, 0, 0, 0.09);
@@ -72,7 +42,7 @@ body {
 }
 
 .button:hover span {
-  padding-right: 25px;
+  padding-right: 15px;
 }
 
 .button:hover span:after {
@@ -82,13 +52,17 @@ body {
 
 .clouds {
   position: absolute;
-  top:50px;
-  left:100px;
+  top: 50px;
+  left: 100px;
 }
 
 @keyframes cloud {
-  0% { left: -100px;}
-  100%{ left : 100vw;}
+  0% {
+    left: -100px;
+  }
+  100% {
+    left: 100vw;
+  }
 }
 
 .cloudOne, .cloudTwo, .cloudThree .cloudFour .cloudFive .cloudSix .cloudSeven {
@@ -96,44 +70,47 @@ body {
   width: 50px;
   height: 25px;
   background-color: #fff;
-  border-radius:100px 100px 0 0;
+  border-radius: 100px 100px 0 0;
 }
 
 .cloudOne {
   opacity: 30%;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   animation: cloud 30s linear infinite;
 }
 
 .cloudTwo {
   opacity: 25%;
-  top:50px;
+  top: 50px;
   right: -100px;
   animation: cloud 25s linear infinite;
 }
 
 .cloudThree {
   opacity: 50%;
-  top:250px;
+  top: 250px;
   right: 0px;
   animation: cloud 28s linear infinite;
 }
+
 .cloudFour {
   opacity: 30%;
-  top:250px;
+  top: 250px;
   right: 0px;
   animation: cloud 16s linear infinite;
 }
+
 .cloudFive {
   opacity: 70%;
   top: 10px;
   right: 100px;
   animation: cloud 40s linear infinite;
 }
+
 .cloudSeven {
   opacity: 10%;
-  top:250px;
+  top: 250px;
   right: 0px;
   animation: cloud 47s linear infinite;
 }
@@ -162,6 +139,7 @@ svg {
   margin: 0px auto;
   z-index: 3;
 }
+
 /*Paper Plane: Image*/
 .plane {
   width: 100%;
@@ -201,6 +179,7 @@ svg {
   -moz-animation: paperplanesoaring 4s forwards infinite;
   animation: paperplanesoaring 4s forwards infinite;
 }
+
 @-webkit-keyframes paperplanesoaring {
   0% {
     -webkit-transform: rotate(0deg);
@@ -235,9 +214,133 @@ svg {
 }
 
 @keyframes move {
-  0% {transform: translateY(0) rotateX(0);}
-  25% {transform: translateY(-30px) rotateX(40deg);}
-  50% {transform: rotateX(0) translateY(0);}
-  75% {transform: rotateX(-40deg) translateY(30px);}
-  100% {transform: rotateX(0) translateY(0);}
+  0% {
+    transform: translateY(0) rotateX(0);
+  }
+  25% {
+    transform: translateY(-30px) rotateX(40deg);
+  }
+  50% {
+    transform: rotateX(0) translateY(0);
+  }
+  75% {
+    transform: rotateX(-40deg) translateY(30px);
+  }
+  100% {
+    transform: rotateX(0) translateY(0);
+  }
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 15px 0 rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    z-index: 10;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    width: 40%;
+
+    .title {
+      font-weight: 1000;
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      text-align: center;
+    }
+
+    .multi-button {
+      background-color: white;
+      border: 1px solid white;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: row;
+      -ms-flex-direction: row;
+      -webkit-flex-direction: row;
+      padding: 7px;
+      z-index: 10;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 15px 0 rgba(0, 0, 0, 0.4);
+
+
+      #github {
+        background-color: rgb(17, 15, 15);
+        border: 1px solid whitesmoke;
+      }
+
+      #github-icon {
+        color: whitesmoke;
+      }
+
+      #github > #github-icon {
+        opacity: 0;
+        transition: 0.5s;
+      }
+
+      #github:hover > #github-icon {
+        opacity: 1;
+        transition: 0.5s;
+      }
+
+      #nuget {
+        background-color: rgb(0, 72, 128);
+        border: 1px solid whitesmoke;
+      }
+
+      #nuget-icon {
+        color: whitesmoke;
+      }
+
+      #nuget > #nuget-icon {
+        opacity: 0;
+        transition: 0.5s;
+      }
+
+      #nuget:hover > #nuget-icon {
+        opacity: 1;
+        transition: 0.5s;
+      }
+
+      #website {
+        background-color: #47A4EC;
+        border: 1px solid #47A4EC;
+      }
+
+      #website-icon {
+        color: whitesmoke;
+      }
+
+      #website > #website-icon {
+        opacity: 0;
+        transition: 0.5s;
+      }
+
+      #website:hover > #website-icon {
+        opacity: 1;
+        transition: 0.5s;
+      }
+    }
+
+    .subtitle {
+      color: darkgray;
+    }
+  }
+
+
 }
