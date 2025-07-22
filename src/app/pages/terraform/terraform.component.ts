@@ -350,17 +350,6 @@ export class TerraformComponent implements OnInit, AfterViewInit {
         this.resultsHtml = `<div class="change destroy-border"><div class="resource-title destroy">Fehler beim Laden des Plans</div><div class="attribute">Konnte Plan mit ID "${planId}" nicht vom Worker laden. Details: ${error.message || error}</div></div>`;
         console.error('Error fetching plan from worker:', error);
       }
-    } else if (this.planInput.trim() === '') {
-      // Fallback to loading plan.json from same directory (for GitLab Pages direct hosting)
-      try {
-        const response = await this.http.get('plan.json', { responseType: 'text' }).toPromise();
-        this.planInput = response || '';
-        this.analyze();
-      } catch (error) {
-        // If plan.json is not found or not OK, just clear results
-        this.resultsHtml = '';
-        console.error('Error fetching plan.json locally:', error);
-      }
     }
   }
 
