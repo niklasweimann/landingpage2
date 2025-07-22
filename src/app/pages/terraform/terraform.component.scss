@@ -1,0 +1,645 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.terraform-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    color: white;
+    font-weight: 700;
+
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.controls-section {
+  margin-bottom: 2rem;
+
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1.5rem;
+    }
+  }
+
+  .control-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+}
+
+.file-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+
+    &:before {
+      content: "✓";
+      position: absolute;
+      top: -2px;
+      left: 2px;
+      color: white;
+      font-weight: bold;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s ease;
+    }
+  }
+
+  input[type="checkbox"]:checked + .checkbox-custom {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: white;
+
+    &:before {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+.primary-btn, .secondary-btn {
+  padding: 0.8rem 1.8rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.primary-btn {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+  }
+}
+
+.secondary-btn {
+  background: linear-gradient(45deg, #ffc107, #fd7e14);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+  }
+}
+
+.input-section {
+  margin-bottom: 2rem;
+
+  textarea {
+    width: 100%;
+    height: 300px;
+    background: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    font-family: 'Fira Code', 'SF Mono', 'Roboto Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    color: #333;
+
+    &:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+
+    &.drag-over {
+      border-color: #28a745;
+      box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+      background-color: #e6f7ff;
+    }
+
+    &::placeholder {
+      color: #6c757d;
+      font-style: italic;
+    }
+  }
+}
+
+.results-section {
+  .results-container {
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    padding: 1rem 0;
+  }
+
+  .summary-container {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    border-left: 4px solid #28a745;
+
+    h2 {
+      margin-top: 0;
+      color: #155724;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      color: #155724;
+      font-size: 1.2rem;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      padding-left: 0;
+      color: #333;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    .error-message {
+      background: #f8d7da;
+      color: #721c24 !important;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #f5c6cb;
+      
+      h2 {
+        color: #721c24 !important;
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        color: #721c24 !important;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Change Type Sections (Terraform Cloud Style)
+.change-type-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #343a40;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    .count {
+      font-size: 0.9em;
+      color: #6c757d;
+      font-weight: normal;
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+// Change Items (Terraform Cloud Style with proper backgrounds)
+.change {
+  margin-bottom: 1rem;
+  background: #fdfdff;
+  border: 1px solid #e9ecef;
+  border-left-width: 5px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  &.add-border { 
+    border-left-color: #28a745;
+  }
+  
+  &.destroy-border { 
+    border-left-color: #dc3545;
+  }
+  
+  &.modify-border { 
+    border-left-color: #ffc107;
+  }
+  
+  &.replace-border { 
+    border-left-color: #dc3545;
+  }
+}
+
+.resource-title {
+  font-weight: bold;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  transition: background-color 0.2s ease;
+  color: #343a40 !important;
+
+  &:hover {
+    background: #e9ecef;
+  }
+
+  .toggle-icon {
+    font-size: 0.9em;
+    transition: transform 0.2s ease-in-out;
+    transform-origin: center center;
+    color: #6c757d !important;
+    font-weight: normal;
+  }
+
+  // Ensure proper text colors
+  span {
+    color: #343a40 !important;
+  }
+
+  .add {
+    color: #28a745 !important;
+  }
+
+  .destroy {
+    color: #dc3545 !important;
+  }
+
+  .modify {
+    color: #e89c00 !important;
+  }
+
+  .replace {
+    color: #dc3545 !important;
+    font-weight: bold !important;
+  }
+}
+
+.resource-details {
+  padding: 1rem 1.5rem;
+  background: #fdfdfd;
+}
+
+.attribute {
+  margin: 0.5rem 0;
+  margin-left: 1rem;
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #343a40;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  strong {
+    color: #495057;
+    font-weight: 600;
+  }
+
+  // Better styling for attributes with changes
+  &.modify strong {
+    color: #e89c00;
+  }
+
+  &.add strong {
+    color: #28a745;
+  }
+
+  &.destroy strong {
+    color: #dc3545;
+  }
+}
+
+// Status Colors - Terraform Cloud Style
+.add, span.add { 
+  color: #28a745 !important;
+}
+
+.destroy, span.destroy { 
+  color: #dc3545 !important;
+}
+
+.modify, span.modify { 
+  color: #e89c00 !important;
+}
+
+.replace, span.replace { 
+  color: #dc3545 !important;
+  font-weight: bold !important;
+}
+
+.replace-reason {
+  color: #721c24;
+  font-size: 0.9rem;
+  font-style: italic;
+  background: #f8d7da;
+  padding: 0.8rem;
+  border-radius: 6px;
+  margin: 0.8rem 0;
+  border: 1px solid #f5c6cb;
+  font-weight: 500;
+}
+
+// Diff Highlighting (Enhanced Terraform Cloud Style)
+.diff-del {
+  background-color: #ffeaea;
+  color: #d73a49;
+  text-decoration: line-through;
+  padding: 0.1rem 0.2rem;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.diff-add {
+  background-color: #e6ffed;
+  color: #28a745;
+  padding: 0.1rem 0.2rem;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+// Loading Spinner
+.loading-spinner {
+  border: 4px solid rgba(102, 126, 234, 0.2);
+  border-left-color: #667eea;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Empty state message
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6c757d;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  border: 2px dashed #dee2e6;
+  
+  .empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+    display: block;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #495057;
+    font-weight: 600;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #6c757d;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .terraform-container {
+    padding: 1rem;
+  }
+
+  .header-section h1 {
+    font-size: 2rem;
+  }
+
+  .controls {
+    padding: 1.5rem !important;
+  }
+
+  .change {
+    margin-bottom: 1rem;
+  }
+
+  .resource-title {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .resource-details {
+    padding: 1rem 1.5rem;
+  }
+
+  .attribute {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+
+  .change-type-section h2 {
+    font-size: 1.3rem;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .terraform-container {
+    padding: 0.5rem;
+  }
+
+  .header-section {
+    margin-bottom: 2rem;
+    
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  .input-section textarea {
+    height: 250px;
+    padding: 1rem;
+    font-size: 13px;
+  }
+
+  .controls {
+    padding: 1rem !important;
+  }
+
+  .attribute {
+    font-size: 0.8rem;
+  }
+}
+
+// Global error message styles - make sure they work everywhere outside summary container
+:host ::ng-deep .error-message {
+  background: #f8d7da !important;
+  color: #721c24 !important;
+  padding: 1.5rem !important;
+  border-radius: 8px !important;
+  border: 1px solid #f5c6cb !important;
+  margin: 1rem 0 !important;
+  
+  h2 {
+    color: #721c24 !important;
+    margin-bottom: 1rem !important;
+    margin-top: 0 !important;
+  }
+  
+  p {
+    color: #721c24 !important;
+    margin-bottom: 0 !important;
+    line-height: 1.5 !important;
+  }
+  
+  * {
+    color: #721c24 !important;
+  }
+}

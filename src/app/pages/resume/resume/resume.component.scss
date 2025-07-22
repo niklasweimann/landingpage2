@@ -1,7 +1,6 @@
 // Background animation
 .area{
-  background: #4e54c8;
-  background: linear-gradient(111.1deg, rgb(0, 40, 70) -4.8%, rgb(255, 115, 115) 82.7%, rgb(255, 175, 123) 97.2%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   width: 100%;
   height: auto;
   z-index: -99;
@@ -121,14 +120,26 @@
 
 // Button
 a.mail-request-button {
-  background-color: cornflowerblue;
-  color: white;
-  padding: 15px 25px;
-  text-decoration: none;
-  cursor: pointer;
+  padding: 0.8rem 1.8rem;
   border: none;
-  display: block;
-  text-align: center;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+  text-decoration: none;
+  justify-content: center;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+  }
 }
 //
 
@@ -189,6 +200,8 @@ body {
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
   color: var(--text-color);
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 h1, h2, h3, h4, ul, p {

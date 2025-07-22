@@ -1,0 +1,128 @@
+<div class="terraform-container">
+  <div class="header-section">
+    <h1>🔧 Terraform Plan Analyzer</h1>
+    <p class="subtitle">Analysiere und visualisiere deine Terraform-Infrastrukturänderungen</p>
+  </div>
+
+  <div class="controls-section">
+    <div class="controls">
+      <div class="control-group">
+        <label class="file-upload-btn">
+          📁 Datei auswählen
+          <input type="file" id="fileInput" accept=".json,.txt" (change)="handleFileInput($event)">
+        </label>
+      </div>
+      
+      <div class="control-group">
+        <label class="checkbox-label">
+          <input type="checkbox" id="jsonToggle" [(ngModel)]="useJson">
+          <span class="checkbox-custom"></span>
+          JSON Plan verwenden
+        </label>
+      </div>
+      
+      <div class="control-group">
+        <button id="analyzeBtn" class="primary-btn" (click)="analyze()">
+          🔍 Analysieren
+        </button>
+        <button id="summarizeBtn" class="secondary-btn" (click)="summarizePlan()" [disabled]="summarizeLoading">
+          ✨ Zusammenfassen (AI)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-section">
+    <textarea 
+      id="planInput" 
+      placeholder="📋 Füge hier den Terraform Plan Output oder JSON ein...
+
+💡 Tipps:
+• Ziehe Dateien einfach hierher
+• Verwende 'terraform plan -out=plan.out && terraform show -json plan.out' für JSON
+• Oder nutze einfach 'terraform plan' für Text-Output"
+      [(ngModel)]="planInput"
+      (input)="analyze()"
+      (dragover)="handleDragOver($event)"
+      (dragleave)="handleDragLeave($event)"
+      (drop)="handleDrop($event)"
+    ></textarea>
+  </div>
+
+  <div class="results-section">
+    <div class="results-container">
+      <!-- Display general results/errors -->
+      <div *ngIf="resultsHtml" [innerHTML]="resultsHtml"></div>
+
+      <!-- Empty state -->
+      <div *ngIf="!resultsHtml && !(groupedChanges.create.length > 0 || groupedChanges.modify.length > 0 || groupedChanges.destroy.length > 0 || groupedChanges.replace.length > 0)" class="empty-state">
+        <div class="empty-icon">🏗️</div>
+        <h3>Bereit zur Analyse</h3>
+        <p>Füge deinen Terraform Plan oben ein oder lade eine Datei hoch, um die Infrastrukturänderungen zu visualisieren.</p>
+      </div>
+
+      <!-- Grouped changes -->
+      <div *ngIf="!resultsHtml && (groupedChanges.create.length > 0 || groupedChanges.modify.length > 0 || groupedChanges.destroy.length > 0 || groupedChanges.replace.length > 0)">
+        <ng-container *ngFor="let type of getOrderedTypes()">
+          <div *ngIf="groupedChanges[type].length > 0" class="change-type-section">
+            <h2>{{ getIconForType(type) }} {{ getTitleForType(type) }} <span class="count">({{ groupedChanges[type].length }} Ressourcen)</span></h2>
+            <div *ngFor="let change of groupedChanges[type]" class="change" [ngClass]="getChangeBorderClass(change)">
+              <div class="resource-title" (click)="toggleResourceDetails(change, $event)">
+                <span>{{ getIconForType(type) }}</span> 
+                <span>{{ change.address }}</span> 
+                <span *ngIf="change.change.actions.includes('replace')" class="replace">(~> Force Replacement)</span>
+                <span class="toggle-icon">▶</span>
+              </div>
+              
+              <div class="resource-details">
+                <ng-container *ngIf="change.change.replacement_reasons && change.change.replacement_reasons.length > 0">
+                  <div *ngFor="let reason of change.change.replacement_reasons" class="attribute replace-reason">
+                    Grund: {{ reason }}
+                  </div>
+                </ng-container>
+
+                <ng-container *ngIf="useJson">
+                  <!-- JSON-specific attribute rendering -->
+                  <ng-container *ngFor="let key of getObjectKeys(change.change.after || {})">
+                    <ng-container *ngIf="shouldShowAttribute(change, key)">
+                      <div class="attribute">
+                        <span class="modify"><strong>{{ key }}</strong>: </span> 
+                        <span [innerHTML]="getDiffHtml(change, key)"></span>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                  <!-- Handle keys only in 'before' for JSON (deletions) -->
+                  <ng-container *ngFor="let key of getObjectKeys(change.change.before || {})">
+                    <div *ngIf="!hasKey(change.change.after, key)" class="attribute">
+                      <span class="destroy"><strong>{{ key }}</strong>: {{ getJsonValue(change.change.before[key]) }}</span>
+                    </div>
+                  </ng-container>
+                </ng-container>
+                
+                <ng-container *ngIf="!useJson">
+                  <!-- Plain text-specific attribute rendering -->
+                  <div *ngFor="let line of change.details" class="attribute" [ngClass]="{
+                    'modify': line.includes('->'),
+                    'add': line.trim().startsWith('+') && !line.includes('->'),
+                    'destroy': line.trim().startsWith('-') && !line.includes('->')
+                  }">
+                    <ng-container *ngIf="line.includes('->'); else plainLine">
+                      <ng-container *ngIf="parsePlainTextDiff(line) as parsedDiff">
+                        <strong>{{ parsedDiff.key }}</strong>: <span [innerHTML]="diffStrings(parsedDiff.before, parsedDiff.after)"></span>
+                      </ng-container>
+                    </ng-container>
+                    <ng-template #plainLine>
+                      {{ line }}
+                    </ng-template>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="summary-container" [style.display]="showSummary ? 'block' : 'none'" [innerHTML]="summaryResultHtml"></div>
+  </div>
+</div>

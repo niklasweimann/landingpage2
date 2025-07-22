@@ -1,0 +1,107 @@
+<!-- Initial Screen -->
+<div class="initial-screen" [ngClass]="{'hidden': showEditor}" #initialScreen>
+  <h1>Wallpaper Generator</h1>
+  <div class="upload-container">
+    <div class="upload-option">
+      <h3>📁 Datei hochladen</h3>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+    </div>
+    <div class="upload-option">
+      <h3>🔗 Bild-URL</h3>
+      <input type="url" [(ngModel)]="imageUrl" (input)="onUrlInput()" placeholder="Bild-URL eingeben" />
+    </div>
+  </div>
+</div>
+
+<!-- Editor View -->
+<div class="editor-view" [ngClass]="{'active': showEditor}" #editorView>
+  <button class="toggle-btn" [ngClass]="{'hidden': showControlPanel}" (click)="toggleControlPanel()">⚙️</button>
+
+  <div class="control-panel" [ngClass]="{'visible': showControlPanel}" #controlPanel>
+    <div class="panel-header">
+      <div class="header-left">
+        <h3>Bildbearbeitung</h3>
+      </div>
+      <button class="close-panel-btn" (click)="toggleControlPanel()" title="Panel schließen">✕</button>
+    </div>
+    
+    <div class="panel-actions">
+      <button class="new-image-btn" (click)="backToInitialScreen()">
+        <span class="btn-icon">🖼️</span>
+        <span class="btn-text">Neues Bild laden</span>
+      </button>
+    </div>
+
+    <div class="control-group">
+      <label>Schriftgröße:</label>
+      <div class="slider-container">
+        <input type="range" [(ngModel)]="fontSize" (input)="updateCanvas()" min="12" max="200" />
+        <input type="number" [(ngModel)]="fontSize" (input)="updateCanvas()" min="12" max="200" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Schriftfarbe:</label>
+      <input type="color" [(ngModel)]="fontColor" (input)="updateCanvas()" />
+    </div>
+
+    <div class="control-group">
+      <div class="checkbox-container">
+        <input type="checkbox" [(ngModel)]="shadowEnabled" (change)="updateCanvas()" />
+        <label>Schattierung aktivieren</label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Schattierung Farbe:</label>
+      <input type="color" [(ngModel)]="shadowColor" (input)="updateCanvas()" />
+    </div>
+
+    <div class="control-group">
+      <label>Schriftart:</label>
+      <select [(ngModel)]="fontFamily" (change)="updateCanvas()">
+        <option value="Arial Black">Arial Black</option>
+        <option value="Impact">Impact</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Arial">Arial</option>
+        <option value="Tahoma">Tahoma</option>
+        <option value="sans-serif">Sans-serif</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label>Textauswahl:</label>
+      <select [(ngModel)]="textSelection" (change)="updateCanvas()">
+        <option value="Workhard Anywhere">Workhard Anywhere</option>
+        <option value="Never Settle">Never Settle</option>
+        <option value="Work Hard Play Hard">Work Hard Play Hard</option>
+        <option value="Custom">Benutzerdefiniert</option>
+      </select>
+    </div>
+
+    <div class="control-group" *ngIf="textSelection === 'Custom'">
+      <label>Benutzerdefinierter Text:</label>
+      <textarea [(ngModel)]="customText" (input)="updateCanvas()" placeholder="Deinen Text hier eingeben"></textarea>
+    </div>
+
+    <div class="control-group">
+      <label>Text X-Position:</label>
+      <div class="slider-container">
+        <input type="range" [(ngModel)]="textOffsetX" (input)="updateCanvas()" min="-500" max="500" />
+        <input type="number" [(ngModel)]="textOffsetX" (input)="updateCanvas()" min="-500" max="500" />
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Text Y-Position:</label>
+      <div class="slider-container">
+        <input type="range" [(ngModel)]="textOffsetY" (input)="updateCanvas()" min="-500" max="500" />
+        <input type="number" [(ngModel)]="textOffsetY" (input)="updateCanvas()" min="-500" max="500" />
+      </div>
+    </div>
+
+    <button (click)="downloadImage()">📥 Bild herunterladen</button>
+  </div>
+
+  <canvas #canvas></canvas>
+</div>

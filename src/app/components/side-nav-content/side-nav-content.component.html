@@ -3,8 +3,25 @@
   <h1>Navigation</h1>
   <hr>
   <ul class="side-nav-bar-menu">
-    <li (click)="onNavigationSelection(navItem)" *ngFor="let navItem of navItems" class="vertical-navbar"><a
-      [ngClass]="{'active': navItem.Active}">{{ navItem.Label }}</a></li>
+    <li *ngFor="let navItem of navItems" class="vertical-navbar">
+      <a (click)="onNavigationSelection(navItem)" 
+         [ngClass]="{'active': navItem.Active, 'has-submenu': navItem.SubItems && navItem.SubItems.length > 0}">
+        {{ navItem.Label }}
+        <span *ngIf="navItem.SubItems && navItem.SubItems.length > 0" 
+              class="submenu-arrow" 
+              [ngClass]="{'expanded': navItem.IsExpanded}">▶</span>
+      </a>
+      
+      <!-- Submenu -->
+      <ul *ngIf="navItem.SubItems && navItem.SubItems.length > 0 && navItem.IsExpanded" 
+          class="submenu">
+        <li *ngFor="let subItem of navItem.SubItems" 
+            (click)="onSubItemSelection(subItem)" 
+            class="submenu-item">
+          <a [ngClass]="{'active': subItem.Active}">{{ subItem.Label }}</a>
+        </li>
+      </ul>
+    </li>
   </ul>
   <footer>
     <hosted-services-component></hosted-services-component>

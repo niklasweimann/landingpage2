@@ -1,5 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {
   HostedServicesComponentComponent
@@ -17,6 +19,8 @@ import {GalleryComponent} from './pages/gallery/gallery/gallery.component';
 import { ResumeComponent } from './pages/resume/resume/resume.component';
 import { RxtelegramComponent } from './pages/rxtelegram/rxtelegram.component';
 import { DotaidComponent } from './pages/dotaid/dotaid.component';
+import { WhaComponent } from './pages/wha/wha.component';
+import { TerraformComponent } from './pages/terraform/terraform.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +37,13 @@ import { DotaidComponent } from './pages/dotaid/dotaid.component';
     ResumeComponent,
     RxtelegramComponent,
     DotaidComponent,
+    WhaComponent,
+    TerraformComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     FontAwesomeModule,
     AppRoutingModule
   ],

@@ -18,16 +18,65 @@
     margin-bottom: 1em;
     margin-top: 1em;
     cursor: pointer;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 
     a {
       color: #000;
       font-family: Arial, ui-monospace;
       text-decoration: none;
       user-select: none;
+      display: block;
+      line-height: 1.3;
+      position: relative;
     }
 
     a.active {
       font-weight: bolder;
+    }
+
+    a.has-submenu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .submenu-arrow {
+      font-size: 0.8em;
+      transition: transform 0.3s ease;
+      transform: rotate(0deg);
+    }
+
+    .submenu-arrow.expanded {
+      transform: rotate(90deg);
+    }
+
+    .submenu {
+      list-style: none;
+      padding: 0;
+      margin: 0.5em 0 0 1em;
+      border-left: 2px solid #ddd;
+
+      .submenu-item {
+        font-size: 0.9em;
+        margin: 0.5em 0;
+        padding-left: 1em;
+        cursor: pointer;
+
+        a {
+          color: #666;
+          font-size: inherit;
+        }
+
+        a.active {
+          color: #000;
+          font-weight: bold;
+        }
+
+        &:hover a {
+          color: #333;
+        }
+      }
     }
   }
 

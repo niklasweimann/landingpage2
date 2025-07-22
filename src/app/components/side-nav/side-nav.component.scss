@@ -19,6 +19,8 @@
     background: whitesmoke;
     display: flex;
     flex-direction: column;
+    min-width: 280px;
+    width: auto;
 
     .side-nav-bar-close {
       display: inline-block;

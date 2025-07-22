@@ -46,6 +46,10 @@ li {
     &.wordPress > a {
       color: $color-wordPress;
     }
+
+    &.openWebUI > a {
+      color: #00d4aa;
+    }
   }
 
   a {

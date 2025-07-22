@@ -11,10 +11,16 @@ import {RouteMap} from './route-map.model';
 })
 export class SideNavContentComponent implements OnDestroy {
   public navItems: RouteMap[] = [
-    new RouteMap('Main', ''),
+    new RouteMap('Home', ''),
     new RouteMap('Resume', 'resume'),
-    new RouteMap('RxTelegram', 'rxtelegram'),
-    new RouteMap('DotAid', 'dotaid')
+    new RouteMap('Projekte', '', [
+      new RouteMap('RxTelegram', 'rxtelegram'),
+      new RouteMap('DotAid', 'dotaid')
+    ]),
+    new RouteMap('Tools', '', [
+      new RouteMap('Wallpaper', 'wha'),
+      new RouteMap('Terraform Plan Analyzer', 'terraform')
+    ])
     //new RouteMap('Gallery', 'gallery')
   ];
   @Output("onNavigationSelected") parentFun: EventEmitter<boolean> = new EventEmitter();
@@ -24,7 +30,18 @@ export class SideNavContentComponent implements OnDestroy {
     this.subscriptions.push(
       this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
         const currentRoute = (event as NavigationEnd).url;
-        this.navItems.forEach(rm => rm.Active = false);
+        this.navItems.forEach(rm => {
+          rm.Active = false;
+          if (rm.SubItems) {
+            rm.SubItems.forEach(sub => sub.Active = false);
+            // Check if any submenu item matches current route
+            const subIndex = rm.SubItems.findIndex(sub => sub.Route === currentRoute.substring(1));
+            if (subIndex >= 0) {
+              rm.SubItems[subIndex].Active = true;
+              rm.IsExpanded = true; // Auto-expand parent menu
+            }
+          }
+        });
         const index = this.navItems.findIndex(rm => rm.Route === currentRoute.substring(1))
         if (index >= 0) {
           this.navItems[index].Active = true;
@@ -38,7 +55,18 @@ export class SideNavContentComponent implements OnDestroy {
   }
 
   onNavigationSelection(navItem: RouteMap): void {
+    if (navItem.SubItems && navItem.SubItems.length > 0) {
+      // Toggle submenu expansion
+      navItem.IsExpanded = !navItem.IsExpanded;
+    } else {
+      // Navigate to route
+      this.parentFun.emit(true)
+      this.router.navigate([navItem.Route]).then(r => r);
+    }
+  }
+
+  onSubItemSelection(subItem: RouteMap): void {
     this.parentFun.emit(true)
-    this.router.navigate([navItem.Route]).then(r => r);
+    this.router.navigate([subItem.Route]).then(r => r);
   }
 }

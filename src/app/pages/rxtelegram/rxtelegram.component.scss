@@ -20,99 +20,172 @@ body {
 
 .button {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.09), 0 6px 15px 0 rgba(0, 0, 0, 0.09);
-  padding: 10px 17px 10px 17px;
+  padding: 10px 17px;
   font: 15px Ubuntu;
   color: white;
   border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 150px;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 .button span {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
+  transition: transform 0.3s ease;
+  white-space: nowrap;
 }
 
 .button:hover span {
-  padding-right: 15px;
+  transform: translateX(-5px);
 }
 
-.button:hover span:after {
+.button fa-icon {
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(-10px);
+}
+
+.button:hover fa-icon {
   opacity: 1;
-  right: 0;
+  transform: translateX(0);
 }
 
 .clouds {
-  position: absolute;
-  top: 50px;
-  left: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes cloud {
+/* Continuous cloud animations across entire screen */
+@keyframes cloudFloatHorizontal {
   0% {
-    left: -100px;
+    transform: translateX(-150px);
   }
   100% {
-    left: 100vw;
+    transform: translateX(calc(100vw + 150px));
   }
 }
 
-.cloudOne, .cloudTwo, .cloudThree .cloudFour .cloudFive .cloudSix .cloudSeven {
+@keyframes cloudFloatDiagonal1 {
+  0% {
+    transform: translateX(-150px) translateY(0px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 150px)) translateY(-50px);
+  }
+}
+
+@keyframes cloudFloatDiagonal2 {
+  0% {
+    transform: translateX(-150px) translateY(0px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 150px)) translateY(30px);
+  }
+}
+
+@keyframes cloudFloatWave {
+  0% {
+    transform: translateX(-150px) translateY(0px);
+  }
+  25% {
+    transform: translateX(calc(25vw - 37px)) translateY(-20px);
+  }
+  50% {
+    transform: translateX(calc(50vw - 75px)) translateY(0px);
+  }
+  75% {
+    transform: translateX(calc(75vw - 112px)) translateY(-15px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 150px)) translateY(0px);
+  }
+}
+
+@keyframes cloudFloatSlow {
+  0% {
+    transform: translateX(-200px) translateY(0px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 200px)) translateY(-30px);
+  }
+}
+
+.cloudOne, .cloudTwo, .cloudThree, .cloudFour, .cloudFive, .cloudSix, .cloudSeven {
   position: absolute;
-  width: 50px;
-  height: 25px;
-  background-color: #fff;
-  border-radius: 100px 100px 0 0;
+  width: 120px;
+  height: 60px;
+}
+
+.cloudOne svg, .cloudTwo svg, .cloudThree svg, .cloudFour svg, .cloudFive svg, .cloudSix svg, .cloudSeven svg {
+  width: 100%;
+  height: 100%;
 }
 
 .cloudOne {
-  opacity: 30%;
-  top: 0;
-  left: 0;
-  animation: cloud 30s linear infinite;
+  opacity: 0.3;
+  top: 8%;
+  left: 20%; /* Start distributed across screen */
+  animation: cloudFloatHorizontal 45s linear infinite;
+  animation-delay: 0s;
 }
 
 .cloudTwo {
-  opacity: 25%;
-  top: 50px;
-  right: -100px;
-  animation: cloud 25s linear infinite;
+  opacity: 0.25;
+  top: 25%;
+  left: 60%; /* Start distributed across screen */
+  animation: cloudFloatDiagonal1 38s linear infinite;
+  animation-delay: -10s; /* Negative delay for initial positioning */
 }
 
 .cloudThree {
-  opacity: 50%;
-  top: 250px;
-  right: 0px;
-  animation: cloud 28s linear infinite;
+  opacity: 0.5;
+  top: 65%;
+  left: 15%; /* Start distributed across screen */
+  animation: cloudFloatWave 52s linear infinite;
+  animation-delay: -20s; /* Negative delay for initial positioning */
 }
 
 .cloudFour {
-  opacity: 30%;
-  top: 250px;
-  right: 0px;
-  animation: cloud 16s linear infinite;
+  opacity: 0.35;
+  top: 78%;
+  left: 75%; /* Start distributed across screen */
+  animation: cloudFloatDiagonal2 32s linear infinite;
+  animation-delay: -5s; /* Negative delay for initial positioning */
 }
 
 .cloudFive {
-  opacity: 70%;
-  top: 10px;
-  right: 100px;
-  animation: cloud 40s linear infinite;
+  opacity: 0.6;
+  top: 35%;
+  left: 85%; /* Start distributed across screen */
+  animation: cloudFloatSlow 60s linear infinite;
+  animation-delay: -30s; /* Negative delay for initial positioning */
+}
+
+.cloudSix {
+  opacity: 0.4;
+  top: 50%;
+  left: 40%; /* Start distributed across screen */
+  animation: cloudFloatHorizontal 42s linear infinite;
+  animation-delay: -25s; /* Negative delay for initial positioning */
 }
 
 .cloudSeven {
-  opacity: 10%;
-  top: 250px;
-  right: 0px;
-  animation: cloud 47s linear infinite;
+  opacity: 0.15;
+  top: 82%;
+  left: 5%; /* Start distributed across screen */
+  animation: cloudFloatDiagonal1 48s linear infinite;
+  animation-delay: -15s; /* Negative delay for initial positioning */
 }
 
 
@@ -238,6 +311,8 @@ svg {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 0 10px;
+  box-sizing: border-box;
 
   .card {
     display: flex;
@@ -249,11 +324,13 @@ svg {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 15px 0 rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px;
-    z-index: 10;
+    z-index: 100;
     color: black;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    width: 40%;
+    width: 90%;
+    max-width: 800px;
+    min-width: 320px;
 
     .title {
       font-weight: 1000;
@@ -271,6 +348,9 @@ svg {
       border-radius: 14px;
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
       -ms-flex-direction: row;
       -webkit-flex-direction: row;
       padding: 7px;
@@ -288,15 +368,6 @@ svg {
         color: whitesmoke;
       }
 
-      #github > #github-icon {
-        opacity: 0;
-        transition: 0.5s;
-      }
-
-      #github:hover > #github-icon {
-        opacity: 1;
-        transition: 0.5s;
-      }
 
       #nuget {
         background-color: rgb(0, 72, 128);
@@ -307,15 +378,6 @@ svg {
         color: whitesmoke;
       }
 
-      #nuget > #nuget-icon {
-        opacity: 0;
-        transition: 0.5s;
-      }
-
-      #nuget:hover > #nuget-icon {
-        opacity: 1;
-        transition: 0.5s;
-      }
 
       #website {
         background-color: #47A4EC;
@@ -326,21 +388,223 @@ svg {
         color: whitesmoke;
       }
 
-      #website > #website-icon {
-        opacity: 0;
-        transition: 0.5s;
-      }
-
-      #website:hover > #website-icon {
-        opacity: 1;
-        transition: 0.5s;
-      }
     }
 
     .subtitle {
       color: darkgray;
     }
   }
+}
 
+/* Responsive Design - Mobile First Approach */
 
+/* Small mobile devices (up to 480px) */
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 5px;
+    
+    .card {
+      width: 95%;
+      padding: 15px;
+      margin: 10px;
+      
+      .title {
+        h1 {
+          font-size: 1.8rem;
+        }
+        
+        h3 {
+          font-size: 1rem;
+        }
+      }
+      
+      .multi-button {
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+        
+        .button {
+          width: 100%;
+          min-width: unset;
+          justify-content: center;
+          padding: 12px;
+          font-size: 14px;
+        }
+      }
+      
+      .subtitle {
+        font-size: 14px;
+      }
+    }
+  }
+  
+  /* Cloud optimizations for mobile */
+  .clouds {
+    display: none; /* Hide clouds on very small screens for performance */
+  }
+}
+
+/* Medium mobile devices (481px to 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .container {
+    .card {
+      width: 85%;
+      padding: 18px;
+      
+      .title {
+        h1 {
+          font-size: 2.2rem;
+        }
+      }
+      
+      .multi-button {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        
+        .button {
+          flex: 1 1 calc(50% - 6px);
+          min-width: 140px;
+          padding: 10px 14px;
+        }
+      }
+    }
+  }
+  
+  /* Reduce cloud animations for better performance */
+  .cloudOne, .cloudTwo, .cloudThree, .cloudFour, .cloudFive, .cloudSix, .cloudSeven {
+    opacity: 0.15;
+    animation-duration: 60s; /* Slower animations for better performance */
+  }
+}
+
+/* Tablet devices (769px to 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    .card {
+      width: 70%;
+      
+      .multi-button {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        
+        .button {
+          flex: 1;
+          margin: 0 4px;
+        }
+      }
+    }
+  }
+}
+
+/* Desktop devices (1025px and up) */
+@media screen and (min-width: 1025px) {
+  .container {
+    .card {
+      width: 50%;
+      max-width: 900px;
+      
+      .title {
+        h1 {
+          font-size: 2.8rem;
+        }
+      }
+      
+      .multi-button {
+        .button {
+          padding: 12px 20px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+/* Large desktop devices (1440px and up) */
+@media screen and (min-width: 1440px) {
+  .container {
+    .card {
+      width: 40%;
+      max-width: 1000px;
+      padding: 30px;
+      
+      .title {
+        h1 {
+          font-size: 3rem;
+        }
+        
+        h3 {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .card {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .multi-button {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4), 0 3px 8px 0 rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Landscape orientation optimizations */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+  .container {
+    .card {
+      margin: 10px;
+      padding: 15px;
+      
+      .title {
+        h1 {
+          font-size: 2rem;
+        }
+        
+        h3 {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  
+  /* Reduce cloud density in landscape */
+  .cloudTwo, .cloudFour, .cloudSix {
+    display: none;
+  }
+}
+
+/* Accessibility - Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .cloudOne, .cloudTwo, .cloudThree, .cloudFour, .cloudFive, .cloudSix, .cloudSeven {
+    animation-duration: 120s; /* Much slower animations */
+    opacity: 0.1; /* More subtle */
+  }
+  
+  .plane-container, .plane {
+    animation: none; /* Disable plane animations */
+  }
+}
+
+/* Print styles */
+@media print {
+  .background {
+    background-color: white;
+  }
+  
+  .clouds {
+    display: none;
+  }
+  
+  .card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .multi-button {
+    display: none; /* Hide interactive elements in print */
+  }
 }
