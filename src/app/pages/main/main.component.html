@@ -1,5 +1,5 @@
 <div class="slides">
-  <section #section *ngFor="let page of pages; index as i" class="background">
+  <section #section *ngFor="let page of pages" class="background">
     <div class="content-wrapper">
       <ng-container *ngComponentOutlet="page.component"></ng-container>
     </div>

@@ -7,6 +7,7 @@ import {RxtelegramComponent} from "./pages/rxtelegram/rxtelegram.component";
 import {DotaidComponent} from "./pages/dotaid/dotaid.component";
 import {WhaComponent} from "./pages/wha/wha.component";
 import {TerraformComponent} from "./pages/terraform/terraform.component";
+import {IcsGeneratorComponent} from "./pages/ics-generator/ics-generator.component";
 
 const routes: Routes = [
   {path: '', component: MainComponent, title: 'Niklas Weimann'},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'dotaid', component: DotaidComponent, title: 'DotAid - Niklas Weimann'},
   {path: 'wha', component: WhaComponent, title: 'Wallpaper Creator - Niklas Weimann'},
   {path: 'terraform', component: TerraformComponent, title: 'Terraform Plan Analyzer - Niklas Weimann'},
+  {path: 'ics-generator', component: IcsGeneratorComponent, title: 'iCal Generator - Niklas Weimann'},
   {path: '**', component: MainComponent, title: 'Niklas Weimann'}, // fallback route
 ];
 

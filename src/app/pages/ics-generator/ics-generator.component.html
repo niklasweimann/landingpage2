@@ -1,0 +1,128 @@
+<div class="ics-container">
+  <div class="header">
+    <h1>iCal-Generator für Müllabfuhr</h1>
+    <p>Füge die Abfuhrtermine für jeden Mülltyp in die entsprechenden Textfelder ein. Pro Zeile ein Datum im Format JJJJ-MM-TT.</p>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+
+      <div class="form-section-card">
+        <div class="card-header-custom card-header-brown">
+          <h5>Braune Tonne (Biomüll)</h5>
+        </div>
+        <div class="card-body-custom">
+          <div class="prefill-controls">
+            <div class="prefill-field prefill-start">
+              <label for="braune-start">Erster Termin</label>
+              <input id="braune-start" name="brauneStart" type="date" [(ngModel)]="prefillSettings.braune.start">
+            </div>
+            <div class="prefill-field prefill-interval">
+              <label for="braune-interval">Intervall (Tage)</label>
+              <input id="braune-interval" name="brauneInterval" type="number" min="1" [(ngModel)]="prefillSettings.braune.interval">
+            </div>
+            <button type="button" class="prefill-button" (click)="prefillRecurringDates('braune')">Termine erzeugen</button>
+          </div>
+          <textarea class="form-control" [(ngModel)]="brauneTonneDates" placeholder="2025-01-10
+2025-01-24" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="form-section-card">
+        <div class="card-header-custom card-header-black">
+          <h5>Schwarze/Rote Tonne (Restmüll)</h5>
+        </div>
+        <div class="card-body-custom">
+          <div class="prefill-controls">
+            <div class="prefill-field prefill-start">
+              <label for="schwarze-start">Erster Termin</label>
+              <input id="schwarze-start" name="schwarzeStart" type="date" [(ngModel)]="prefillSettings.schwarze.start">
+            </div>
+            <div class="prefill-field prefill-interval">
+              <label for="schwarze-interval">Intervall (Tage)</label>
+              <input id="schwarze-interval" name="schwarzeInterval" type="number" min="1" [(ngModel)]="prefillSettings.schwarze.interval">
+            </div>
+            <button type="button" class="prefill-button" (click)="prefillRecurringDates('schwarze')">Termine erzeugen</button>
+          </div>
+          <textarea class="form-control" [(ngModel)]="schwarzeTonneDates" placeholder="2025-01-15
+2025-01-29" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="form-section-card">
+        <div class="card-header-custom card-header-green">
+          <h5>Grüne Tonne (Altpapier)</h5>
+        </div>
+        <div class="card-body-custom">
+          <div class="prefill-controls">
+            <div class="prefill-field prefill-start">
+              <label for="gruene-start">Erster Termin</label>
+              <input id="gruene-start" name="grueneStart" type="date" [(ngModel)]="prefillSettings.gruene.start">
+            </div>
+            <div class="prefill-field prefill-interval">
+              <label for="gruene-interval">Intervall (Tage)</label>
+              <input id="gruene-interval" name="grueneInterval" type="number" min="1" [(ngModel)]="prefillSettings.gruene.interval">
+            </div>
+            <button type="button" class="prefill-button" (click)="prefillRecurringDates('gruene')">Termine erzeugen</button>
+          </div>
+          <textarea class="form-control" [(ngModel)]="grueneTonneDates" placeholder="2025-01-22" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="form-section-card">
+        <div class="card-header-custom card-header-yellow">
+          <h5>Gelbe Tonne (Leichtfraktion)</h5>
+        </div>
+        <div class="card-body-custom">
+          <div class="prefill-controls">
+            <div class="prefill-field prefill-start">
+              <label for="gelbe-start">Erster Termin</label>
+              <input id="gelbe-start" name="gelbeStart" type="date" [(ngModel)]="prefillSettings.gelbe.start">
+            </div>
+            <div class="prefill-field prefill-interval">
+              <label for="gelbe-interval">Intervall (Tage)</label>
+              <input id="gelbe-interval" name="gelbeInterval" type="number" min="1" [(ngModel)]="prefillSettings.gelbe.interval">
+            </div>
+            <button type="button" class="prefill-button" (click)="prefillRecurringDates('gelbe')">Termine erzeugen</button>
+          </div>
+          <textarea class="form-control" [(ngModel)]="gelbeTonneDates" placeholder="2025-01-08
+2025-01-22" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="action-container">
+        <button class="btn btn-primary btn-lg primary-action" (click)="generateIcs()">
+          <i class="fa-solid fa-download me-2"></i>.ics-Datei erstellen
+        </button>
+      </div>
+
+      <div *ngIf="generationSuccess" class="modal-backdrop fade show"></div>
+      <div *ngIf="generationSuccess" class="modal fade show" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">.ics Datei erstellt</h5>
+              <button type="button" class="close" (click)="generationSuccess = false" aria-label="Close" style="border: none; background: none; font-size: 1.5rem;">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-success">
+                Deine .ics-Datei wurde erfolgreich erstellt und der Download gestartet!
+              </div>
+              <p>Falls der Download nicht automatisch startet, kannst du den Inhalt hier kopieren:</p>
+              <textarea class="form-control" rows="10" readonly>{{ generatedIcsContent }}</textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="copyToClipboard()">
+                <i class="fa-solid fa-copy me-2"></i>Inhalt kopieren
+              </button>
+              <button type="button" class="btn btn-primary" (click)="generationSuccess = false">Schließen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

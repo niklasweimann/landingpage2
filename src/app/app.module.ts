@@ -21,6 +21,7 @@ import { RxtelegramComponent } from './pages/rxtelegram/rxtelegram.component';
 import { DotaidComponent } from './pages/dotaid/dotaid.component';
 import { WhaComponent } from './pages/wha/wha.component';
 import { TerraformComponent } from './pages/terraform/terraform.component';
+import { IcsGeneratorComponent } from './pages/ics-generator/ics-generator.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TerraformComponent } from './pages/terraform/terraform.component';
     DotaidComponent,
     WhaComponent,
     TerraformComponent,
+    IcsGeneratorComponent,
   ],
   imports: [
     BrowserModule,

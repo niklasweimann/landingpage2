@@ -19,7 +19,8 @@ export class SideNavContentComponent implements OnDestroy {
     ]),
     new RouteMap('Tools', '', [
       new RouteMap('Wallpaper', 'wha'),
-      new RouteMap('Terraform Plan Analyzer', 'terraform')
+      new RouteMap('Terraform Plan Analyzer', 'terraform'),
+      new RouteMap('iCal Generator', 'ics-generator')
     ])
     //new RouteMap('Gallery', 'gallery')
   ];
@@ -42,9 +43,9 @@ export class SideNavContentComponent implements OnDestroy {
             }
           }
         });
-        const index = this.navItems.findIndex(rm => rm.Route === currentRoute.substring(1))
-        if (index >= 0) {
-          this.navItems[index].Active = true;
+        const idx = this.navItems.findIndex(rm => rm.Route === currentRoute.substring(1))
+        if (idx >= 0) {
+          this.navItems[idx].Active = true;
         }
         console.log(currentRoute)
       }));
